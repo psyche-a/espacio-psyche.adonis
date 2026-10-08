@@ -3,110 +3,683 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Psicoterapia Clínica Online | Espacio Profesional</title>
-    <!-- Cargamos una fuente moderna, limpia y altamente legible -->
-    <link rel="preconnect" href="https://googleapis.com">
-    <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Iconos profesionales -->
-    <link rel="stylesheet" href="https://cloudflare.com">
-    <link rel="stylesheet" href="style.css">
+    <title>Adonis Lozano | Psicólogo - Terapia Online</title>
+    <style>
+        :root {
+            --primary: #4A6B6C;
+            --primary-dark: #385253;
+            --accent: #D4A373;
+            --bg-light: #F9F9F7;
+            --white: #FFFFFF;
+            --text-main: #2C3E35;
+            --text-muted: #6C7A73;
+            --border-color: #E2E8E4;
+            --radius: 12px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* HEADER & NAVIGATION */
+        header {
+            position: sticky;
+            top: 0;
+            background-color: rgba(249, 249, 247, 0.95);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-area {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-tag {
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .logo-name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .logo-title {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        nav a {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            transition: var(--transition);
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 0.6rem 1.2rem;
+            border-radius: var(--radius);
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            max-width: 800px;
+            margin: 4rem auto 3rem;
+            padding: 0 2rem;
+            text-align: center;
+        }
+
+        .hero-subtitle-top {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            color: var(--text-main);
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* SECTIONS COMMON */
+        section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-main);
+            text-align: center;
+        }
+
+        /* AREAS DE ATENCION */
+        .tags-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .tag-item {
+            background-color: var(--white);
+            border: 1px solid var(--border-color);
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            color: var(--text-main);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        /* TERAPIA ONLINE */
+        .therapy-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-top: 2rem;
+        }
+
+        .therapy-text p {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .therapy-specs {
+            background-color: var(--white);
+            border: 1px solid var(--border-color);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+        }
+
+        .therapy-specs ul {
+            list-style: none;
+        }
+
+        .therapy-specs li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.95rem;
+        }
+
+        .therapy-specs li:last-child {
+            border-bottom: none;
+        }
+
+        .therapy-specs strong {
+            color: var(--primary);
+        }
+
+        /* PRIMERA CONSULTA */
+        .consult-card {
+            background-color: var(--white);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 3rem 2rem;
+            text-align: center;
+            max-width: 600px;
+            margin: 2rem auto 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        }
+
+        .price-tag {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 1rem 0;
+        }
+
+        .consult-card p {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .post-consult {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 1.5rem;
+        }
+
+        /* ¿COMO FUNCIONA? */
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .step-card {
+            background-color: var(--white);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border-color);
+        }
+
+        .step-number {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .step-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+        }
+
+        .step-card p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* SOBRE EL PSICOLOGO */
+        .about-content {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 2.5rem;
+            align-items: center;
+            margin-top: 2rem;
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border-color);
+        }
+
+        .about-img img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid var(--border-color);
+        }
+
+        .about-text h3 {
+            font-size: 1.4rem;
+            color: var(--text-main);
+        }
+
+        .about-text h4 {
+            font-size: 0.95rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .about-text p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* AGENDAR CITA */
+        .book-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .book-option-card {
+            background-color: var(--white);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border-color);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .book-option-card.highlight {
+            border-color: var(--primary);
+            background-color: #F3F7F6;
+        }
+
+        .book-option-card h3 {
+            font-size: 1rem;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+        }
+
+        .book-option-card p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        /* PREGUNTAS FRECUENTES */
+        .faq-list {
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .faq-item {
+            background-color: var(--white);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 1.25rem 1.5rem;
+        }
+
+        .faq-item h3 {
+            font-size: 1rem;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+        }
+
+        .faq-item p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* CIERRE */
+        .closing {
+            text-align: center;
+            padding: 5rem 2rem;
+            border-bottom: none;
+        }
+
+        .closing h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .closing p {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            font-size: 1.05rem;
+        }
+
+        .closing-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        /* BOTON FLOTANTE WHATSAPP */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25D366;
+            color: white;
+            padding: 0.75rem 1.25rem;
+            border-radius: 50px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            z-index: 999;
+            transition: var(--transition);
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.05);
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+            .therapy-grid, .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .about-img img {
+                margin: 0 auto;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero-actions {
+                flex-direction: column;
+            }
+            .closing-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 <body>
 
-    <!-- Navegación Superior -->
-    <header class="navbar">
-        <div class="container nav-flex">
-            <div class="logo">Psicoterapia<span>Online</span></div>
-            <nav class="nav-links">
-                <a href="#enfoque">Mi Enfoque</a>
-                <a href="#sesiones">Cómo Funciona</a>
-                <a href="https://wa.me" class="btn-nav-whatsapp" target="_blank">
-                    <i class="fa-brands fa-whatsapp"></i> Agendar Cita
-                </a>
+    <!-- 1. ENCABEZADO -->
+    <header>
+        <div class="nav-container">
+            <div class="logo-area">
+                <span class="logo-tag">Atención Psicológica Online | Tu Espacio Psyche</span>
+                <span class="logo-name">Adonis Lozano</span>
+                <span class="logo-title">Psicólogo</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#terapia">Terapia online</a></li>
+                    <li><a href="#sobre-mi">Sobre mí</a></li>
+                    <li><a href="#faq">Preguntas</a></li>
+                    <li><a href="#agendar">Agendar cita</a></li>
+                </ul>
             </nav>
+            <div>
+                <a href="https://calendar.app.google/aoNeNgeWQJg1RZPw7" target="_blank" class="btn">Agendar cita</a>
+            </div>
         </div>
     </header>
 
-    <!-- Sección Principal (Hero) -->
-    <section class="hero">
-        <div class="container hero-grid">
-            <div class="hero-content">
-                <div class="badge"><i class="fa-solid fa-circle-check"></i> Consulta 100% Confidencial</div>
-                <h1>Recupera la calma y el equilibrio emocional.</h1>
-                <p class="hero-text">Soy especialista en salud mental y te ofrezco un espacio seguro, profesional y estructurado en línea. Desarrollemos juntos herramientas prácticas para superar la ansiedad, el estrés y los bloqueos emocionales.</p>
-                
-                <!-- Beneficios rápidos -->
-                <div class="hero-features">
-                    <div class="feat"><i class="fa-solid fa-video"></i> Sesiones por Zoom o Meet</div>
-                    <div class="feat"><i class="fa-solid fa-id-card"></i> Psicólogo Clínico Colegiado</div>
-                </div>
+    <!-- 2. PRESENTACIÓN PRINCIPAL -->
+    <section id="inicio" class="hero">
+        <div class="hero-subtitle-top">Terapia online en español</div>
+        <h1>Un espacio para ti</h1>
+        <p>Ofrezco atención psicológica individual online para adolescentes y adultos que desean comprender mejor lo que están viviendo, recibir apoyo emocional o comenzar un proceso psicológico.</p>
+        <p>La terapia online permite contar con un espacio profesional, privado y confidencial desde donde estés.</p>
+        <p style="font-size: 0.95rem; color: var(--text-muted);">No necesitas tener todo claro antes de comenzar. La primera consulta permite conocer tu situación, comprender qué deseas trabajar y orientarte sobre cómo podemos continuar.</p>
+        <div class="hero-actions" style="margin-top: 2rem;">
+            <a href="https://calendar.app.google/aoNeNgeWQJg1RZPw7" target="_blank" class="btn">Agendar cita</a>
+            <a href="https://wa.me/50362631168" target="_blank" class="btn btn-outline">WhatsApp</a>
+        </div>
+    </section>
 
-                <!-- Botón de Acción Principal -->
-                <div class="action-box">
-                    <a href="https://wa.me" class="btn-whatsapp-hero" target="_blank">
-                        <i class="fa-brands fa-whatsapp"></i> Iniciar Proceso por WhatsApp
-                    </a>
-                    <span class="action-sub">Atención inmediata y personalizada</span>
-                </div>
+    <!-- 3. ÁREAS DE ATENCIÓN -->
+    <section>
+        <h2>¿Qué podemos trabajar?</h2>
+        <div class="tags-grid">
+            <div class="tag-item">Ansiedad</div>
+            <div class="tag-item">Estrés</div>
+            <div class="tag-item">Depresión</div>
+            <div class="tag-item">Autoestima</div>
+            <div class="tag-item">Dificultades emocionales</div>
+            <div class="tag-item">Problemas personales</div>
+            <div class="tag-item">Manejo de emociones</div>
+            <div class="tag-item">Cambios y situaciones difíciles</div>
+        </div>
+    </section>
+
+    <!-- 4. TERAPIA ONLINE -->
+    <section id="terapia">
+        <h2>Terapia psicológica online</h2>
+        <div class="therapy-grid">
+            <div class="therapy-text">
+                <p>Las sesiones se realizan de manera individual mediante videollamada, en español, desde un espacio privado y tranquilo.</p>
+                <p>La atención está dirigida a adolescentes y adultos.</p>
+                <p>La primera consulta permite conocer tu situación y establecer qué deseas trabajar. A partir de ello, el proceso puede continuar de acuerdo con tus necesidades y objetivos.</p>
             </div>
-
-            <!-- Panel de Confianza/Presentación Corta -->
-            <div class="hero-card" id="enfoque">
-                <div class="card-header">
-                    <div class="avatar-placeholder"><i class="fa-solid fa-user-doctor"></i></div>
-                    <div>
-                        <h3>Tu Terapeuta Online</h3>
-                        <p>Acompañamiento Profesional</p>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <p>Mi objetivo es guiarte hacia una vida más plena y consciente. A través de la terapia basada en evidencia, abordaremos lo que te abruma hoy para construir estabilidad mañana.</p>
-                    <ul class="specialties-list">
-                        <li><i class="fa-solid fa-chevron-right"></i> Gestión de Ansiedad y Estrés</li>
-                        <li><i class="fa-solid fa-chevron-right"></i> Procesos de Duelo y Pérdida</li>
-                        <li><i class="fa-solid fa-chevron-right"></i> Fortalecimiento de Autoestima</li>
-                    </ul>
-                </div>
+            <div class="therapy-specs">
+                <ul>
+                    <li><strong>Modalidad:</strong> Online</li>
+                    <li><strong>Atención:</strong> Individual</li>
+                    <li><strong>Población:</strong> Adolescentes y adultos</li>
+                    <li><strong>Idioma:</strong> Español</li>
+                    <li><strong>Duración de sesión:</strong> 60 minutos</li>
+                </ul>
             </div>
         </div>
     </section>
 
-    <!-- Sección de Pasos Prácticos -->
-    <section class="steps-section" id="sesiones">
-        <div class="container">
-            <h2 class="section-title">Iniciar tu proceso es muy sencillo</h2>
-            <div class="steps-grid">
-                <div class="step-card">
-                    <div class="step-num">01</div>
-                    <h4>Escríbeme</h4>
-                    <p>Haz clic en el botón para escribirme por WhatsApp y consultar disponibilidad.</p>
-                </div>
-                <div class="step-card">
-                    <div class="step-num">02</div>
-                    <h4>Coordinamos</h4>
-                    <p>Elegimos el día, la hora y la plataforma de video que mejor se adapte a ti.</p>
-                </div>
-                <div class="step-card">
-                    <div class="step-num">03</div>
-                    <h4>Tu Sesión</h4>
-                    <p>Conéctate desde tu espacio seguro e iniciamos tu proceso de sanación.</p>
-                </div>
+    <!-- 5. PRIMERA CONSULTA -->
+    <section>
+        <h2>Primera consulta psicológica</h2>
+        <div class="consult-card">
+            <div class="price-tag">$15 USD</div>
+            <p>Una primera sesión para conversar sobre lo que estás viviendo, conocer tu situación y definir cómo puedo acompañarte.</p>
+            <a href="https://calendar.app.google/aoNeNgeWQJg1RZPw7" target="_blank" class="btn">Reservar primera consulta</a>
+            <div class="post-consult">Sesiones posteriores: $30 USD · 60 minutos</div>
+        </div>
+    </section>
+
+    <!-- 6. ¿CÓMO FUNCIONA? -->
+    <section>
+        <h2>Comenzar es sencillo</h2>
+        <div class="steps-grid">
+            <div class="step-card">
+                <div class="step-number">01 — Agenda</div>
+                <h3>Agenda</h3>
+                <p>Elige el día y horario que mejor se adapte a ti.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">02 — Primera consulta</div>
+                <h3>Primera consulta</h3>
+                <p>Conversamos sobre tu situación y aquello que deseas trabajar.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">03 — Orientación</div>
+                <h3>Orientación</h3>
+                <p>Comprendemos qué necesitas y cómo puede continuar el proceso.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-number">04 — Continuamos</div>
+                <h3>Continuamos</h3>
+                <p>Si decides continuar, establecemos el camino de trabajo de acuerdo con tus necesidades.</p>
             </div>
         </div>
     </section>
 
-    <!-- BOTÓN FLOTANTE DE WHATSAPP (Perfecto, simétrico y profesional) -->
-    <a href="https://wa.me" class="whatsapp-floating" target="_blank" aria-label="Escríbeme por WhatsApp">
-        <i class="fa-brands fa-whatsapp"></i>
+    <!-- 7. SOBRE EL PSICÓLOGO -->
+    <section id="sobre-mi">
+        <h2>Adonis Lozano</h2>
+        <div style="text-align: center; color: var(--primary); font-weight: 500; margin-top: -1rem; margin-bottom: 1.5rem;">Psicólogo</div>
+        <div class="about-content">
+            <div class="about-img">
+                <img src="C:\Users\MEDUSA\Desktop\Psyche\profile.png" alt="Adonis Lozano - Psicólogo">
+            </div>
+            <div class="about-text">
+                <h3>Adonis Lozano</h3>
+                <h4>Psicólogo</h4>
+                <p>Mi trabajo busca ofrecer un espacio profesional, respetuoso y confidencial donde puedas hablar sobre aquello que estás viviendo, comprender mejor tu experiencia y trabajar en los aspectos que deseas transformar.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. AGENDAR CITA -->
+    <section id="agendar">
+        <h2>Agendar cita</h2>
+        <p style="text-align: center; color: var(--text-muted); margin-bottom: 1.5rem;">Elige la forma que prefieras para ponerte en contacto o programar tu primera consulta.</p>
+        <div class="book-options">
+            <div class="book-option-card">
+                <div>
+                    <h3>Teléfono</h3>
+                    <p>+503 6263-1168</p>
+                </div>
+                <a href="tel:+50362631168" class="btn btn-outline" style="font-size: 0.85rem; padding: 0.4rem;">Llamar</a>
+            </div>
+            <div class="book-option-card">
+                <div>
+                    <h3>WhatsApp</h3>
+                    <p>Atención directa y rápida</p>
+                </div>
+                <a href="https://wa.me/50362631168" target="_blank" class="btn btn-outline" style="font-size: 0.85rem; padding: 0.4rem;">Escribir</a>
+            </div>
+            <div class="book-option-card">
+                <div>
+                    <h3>Email</h3>
+                    <p>psyche.adonis@gmail.com</p>
+                </div>
+                <a href="mailto:psyche.adonis@gtmail.com" class="btn btn-outline" style="font-size: 0.85rem; padding: 0.4rem;">Enviar correo</a>
+            </div>
+            <div class="book-option-card highlight">
+                <div>
+                    <h3>Programar cita</h3>
+                    <p>Elige día y horario</p>
+                </div>
+                <a href="https://calendar.app.google/aoNeNgeWQJg1RZPw7" target="_blank" class="btn" style="font-size: 0.85rem; padding: 0.4rem;">Elegir horario</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. PREGUNTAS FRECUENTES -->
+    <section id="faq">
+        <h2>Preguntas frecuentes</h2>
+        <div class="faq-list">
+            <div class="faq-item">
+                <h3>¿Necesito saber qué me pasa antes de consultar?</h3>
+                <p>No. Puedes comenzar explicando qué estás viviendo y qué te preocupa. La primera consulta permite conocer mejor tu situación y orientarte.</p>
+            </div>
+            <div class="faq-item">
+                <h3>¿La atención es completamente online?</h3>
+                <p>Sí. Las sesiones se realizan mediante videollamada.</p>
+            </div>
+            <div class="faq-item">
+                <h3>¿Atiendes adolescentes?</h3>
+                <p>Sí. Se ofrece atención psicológica online para adolescentes y adultos.</p>
+            </div>
+            <div class="faq-item">
+                <h3>¿Cuánto cuesta la primera consulta?</h3>
+                <p>La primera consulta psicológica tiene un valor de $15 USD. Las sesiones posteriores tienen un valor de $30 USD por 60 minutos.</p>
+            </div>
+            <div class="faq-item">
+                <h3>¿Qué ocurre después de la primera consulta?</h3>
+                <p>Si decides continuar, podremos establecer los objetivos y la forma de trabajo más adecuada de acuerdo con tu situación.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. CIERRE -->
+    <section class="closing">
+        <h2>Darte un espacio también es una forma de comenzar.</h2>
+        <p>No necesitas tener todas las respuestas para pedir apoyo. Podemos comenzar conversando sobre lo que estás viviendo.</p>
+        <div class="closing-actions">
+            <a href="https://calendar.app.google/aoNeNgeWQJg1RZPw7" target="_blank" class="btn">Agendar cita</a>
+            <a href="https://wa.me/50362631168" target="_blank" class="btn btn-outline">WhatsApp</a>
+        </div>
+    </section>
+
+    <!-- BOTÓN FLOTANTE DE WHATSAPP -->
+    <a href="https://wa.me/50362631168" target="_blank" class="whatsapp-float" title="¿Tienes alguna pregunta? Escríbeme por WhatsApp">
+        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+        WhatsApp
     </a>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2026 Consulta Psicológica Online. Profesionalismo, ética y confidencialidad.</p>
-        </div>
-    </footer>
 
 </body>
 </html>
