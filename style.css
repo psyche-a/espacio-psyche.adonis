@@ -1,0 +1,195 @@
+/* --- Variables: Minimalismo Nórdico y Verdes Orgánicos --- */
+:root {
+    --bg-canvas: #f2f5f3;        /* Fondo gris-verdoso ultra suave y relajante */
+    --surface-white: #ffffff;    /* Superficie limpia para el contenedor */
+    --text-primary: #1a2e26;     /* Verde botella profundo, casi negro, muy elegante */
+    --text-secondary: #4a5d55;   /* Verde musgo apagado para textos secundarios */
+    --sage-green: #3b6051;       /* Verde salvia principal de la marca */
+    --sage-light: #e9f0ec;       /* Contraste suave para etiquetas */
+    --whatsapp-brand: #25d366;   /* Color oficial de WhatsApp */
+    --font-serif: 'Instrument Serif', serif;
+    --font-sans: 'Inter', sans-serif;
+}
+
+/* --- Reseteo y Estilos Base --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-sans);
+    background-color: var(--bg-canvas);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* --- Contenedor Principal (Tarjeta de Autor) --- */
+.profile-card {
+    background-color: var(--surface-white);
+    max-width: 520px;
+    width: 100%;
+    padding: 40px;
+    border-radius: 28px;
+    box-shadow: 0 8px 30px rgba(26, 46, 38, 0.04);
+}
+
+/* --- Estado de Disponibilidad --- */
+.profile-header {
+    margin-bottom: 28px;
+}
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--sage-light);
+    color: var(--sage-green);
+    padding: 6px 14px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+}
+
+.status-dot {
+    width: 7px;
+    height: 7px;
+    background-color: var(--whatsapp-brand);
+    border-radius: 50%;
+    display: inline-block;
+    box-shadow: 0 0 8px var(--whatsapp-brand);
+}
+
+/* --- Tipografías y Textos --- */
+.professional-title {
+    display: block;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--sage-green);
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.profile-info h1 {
+    font-family: var(--font-serif);
+    font-size: 3.4rem;
+    font-weight: 400;
+    line-height: 1;
+    margin-bottom: 12px;
+    letter-spacing: -0.5px;
+}
+
+.professional-tagline {
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    line-height: 1.4;
+    margin-bottom: 20px;
+}
+
+.profile-description {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 32px;
+}
+
+/* --- Características del Servicio --- */
+.service-features {
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 20px 0;
+    margin-bottom: 32px;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 10px;
+}
+
+.feature-item:last-child {
+    margin-bottom: 0;
+}
+
+.feature-item i {
+    color: var(--sage-green);
+    font-size: 1rem;
+    width: 16px;
+    text-align: center;
+}
+
+/* --- Acción Principal de Conversión --- */
+.btn-whatsapp-main {
+    text-decoration: none;
+    background-color: var(--sage-green);
+    color: var(--surface-white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 16px;
+    border-radius: 16px;
+    font-weight: 600;
+    font-size: 1rem;
+    box-shadow: 0 4px 15px rgba(59, 96, 81, 0.15);
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.btn-whatsapp-main:hover {
+    background-color: #2b473c;
+    transform: translateY(-1px);
+}
+
+.cta-hint {
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-top: 10px;
+}
+
+/* --- BOTÓN FLOTANTE EXACTO Y SIMÉTRICO --- */
+.whatsapp-floating-action {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background-color: var(--whatsapp-brand);
+    color: var(--surface-white);
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 26px; /* Icono tratado como texto, perfectamente a la mitad del círculo */
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+    z-index: 1000;
+    text-decoration: none;
+    transition: transform 0.2s ease;
+}
+
+.whatsapp-floating-action:hover {
+    transform: scale(1.06);
+}
+
+/* --- Adaptación para Pantallas Pequeñas --- */
+@media (max-width: 480px) {
+    .profile-card {
+        padding: 24px;
+        border-radius: 20px;
+    }
+    .profile-info h1 {
+        font-size: 2.8rem;
+    }
+}
