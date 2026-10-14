@@ -1,6 +1,6 @@
 /**
  * PSYCHE - Centro de Bienestar Psicológico
- * Script de Control Interactivo y Animaciones Modernas
+ * Script de Control Interactivo y Animaciones 
  */
 
 document.addEventListener('DOMContentLoaded', () => {
