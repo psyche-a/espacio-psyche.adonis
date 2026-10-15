@@ -3,7 +3,7 @@
    ========================================================================== */
 :root {
     /* Colores de Fondo y Acentos */
-    --bg-green-pastel: #F0F7F4;
+    --bg-green-pastel:  #D9E9E4;
     --bg-green-accent: #E2ECE9;
     --primary-color: #4C887C;
     --primary-hover: #3A695F;
@@ -122,8 +122,9 @@ body {
     transform: translateY(-2px);
 }
 
+
 /* ==========================================================================
-   BOTÓN FLOTANTE DE WHATSAPP
+   BOTÓN FLOTANTE DE WHATSAPP E INYECCIÓN VECTORIAL DE ICONOS
    ========================================================================== */
 .whatsapp-float {
     position: fixed;
@@ -137,7 +138,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 32px;
     box-shadow: 0 8px 24px rgba(37, 211, 102, 0.3);
     z-index: 9999;
     transition: var(--transition-smooth);
@@ -148,6 +148,34 @@ body {
     transform: scale(1.1) rotate(10deg);
     box-shadow: 0 12px 32px rgba(37, 211, 102, 0.45);
 }
+
+/* ==========================================================================
+   CONTROL DE ICONOS MEDIANTE FUENTE CSS (FONT SYSTEM)
+   ========================================================================== */
+/* Regla general para todos los iconos del sitio */
+.area-tag i, .channel-icon i {
+    font-family: 'lucide' !important; /* Fuerza el uso de la tipografía descargada */
+    font-size: 24px !important;       /* Controla el tamaño del icono */
+    color: var(--primary-color);      /* Aplica tu color verde característico */
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Tamaño y color blanco exclusivo para el botón flotante de WhatsApp */
+.whatsapp-float i {
+    font-family: 'lucide' !important;
+    font-size: 32px !important;
+    color: #ffffff !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 
 /* ==========================================================================
    1. ENCABEZADO Y MENÚ DE NAVEGACIÓN
@@ -762,12 +790,16 @@ body {
 
 .booking-channels-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
+    grid-template-columns: repeat(3, 1fr); /* Cambiado de 4 a 3 columnas perfectas */
+    gap: 24px; /* Espaciado uniforme entre las 3 tarjetas */
 }
 
+/* ==========================================================================
+   CONFIGURACIÓN DE TARJETAS DE AGENDAMIENTO (Fondo unificado con la página)
+   ========================================================================== */
 .channel-card {
-    background: rgba(255, 255, 255, 0.5);
+    /* REEMPLAZADO: Usamos exactamente la variable del fondo de la página */
+    background-color: var(--bg-green-pastel) !important; 
     border: 1px solid var(--glass-border);
     border-radius: var(--radius-md);
     padding: 32px 20px;
@@ -775,12 +807,26 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
+    min-height: 280px;
     transition: var(--transition-smooth);
+    box-shadow: none; /* Quitamos sombras pesadas para que se integre al fondo */
 }
 
+/* Evitamos que el efecto hover le vuelva a poner el fondo blanco traslúcido */
 .channel-card:hover {
-    background: rgba(255, 255, 255, 0.9);
+    background-color: var(--bg-green-accent) !important; /* Un tono sutilmente más oscuro al pasar el mouse */
     transform: translateY(-2px);
+}
+
+/* La tarjeta recomendada mantiene su comportamiento pero con el nuevo color base */
+.featured-channel {
+    background-color: var(--bg-green-pastel) !important;
+    border: 2px solid var(--primary-color);
+}
+
+.featured-channel:hover {
+    background-color: var(--bg-green-accent) !important;
 }
 
 .channel-icon {
@@ -802,10 +848,30 @@ body {
 }
 
 .channel-card h3 {
-    font-size: 1.15rem;
-    margin-bottom: 6px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 4px;
+}
+/* Estilo para los datos de contacto visibles en el medio */
+.channel-data-visible {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+    display: block;
 }
 
+/* Ajuste específico para que el correo largo no rompa la tarjeta en móviles */
+.email-text {
+    font-size: 0.88rem;
+    word-break: break-all;
+}
+
+/* Espaciado del botón de acción en la parte inferior */
+.channel-btn-action {
+    margin-top: auto; /* Empuja el botón al fondo de la tarjeta */
+}
 .channel-action {
     font-size: 0.85rem;
     text-transform: uppercase;
@@ -976,32 +1042,36 @@ body {
 }
 
 /* ==========================================================================
-   DISEÑO RESPONSIVO (MEDIA QUERIES)
+   DISEÑO RESPONSIVO (Media Queries para el comportamiento de la Tarjeta 3)
    ========================================================================== */
-
-/* Adaptación para Tablets y Desktops pequeños */
 @media (max-width: 1024px) {
-    .cards-triple-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
+    /* La cuadrícula pasa a tener un sistema ordenado de 2 columnas */
     .booking-channels-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
     }
+
+    /* OBLIGATORIO: La tercera tarjeta (Recomendada) se expande horizontalmente cubriendo el ancho total */
     .featured-channel {
+        grid-column: span 2; 
         transform: none;
-    }
-    .featured-channel:hover {
-        transform: translateY(-2px);
     }
 }
 
-/* Adaptación Estricta para Dispositivos Móviles */
-@media (max-width: 768px) {
-    .menu-toggle {
-        display: block;
+@media (max-width: 520px) {
+    /* En teléfonos pequeños, rompemos las columnas y todo se apila de forma vertical natural */
+    .booking-channels-grid {
+        grid-template-columns: 1fr;
     }
     
+    /* En móviles puros regresa a medir una columna de ancho */
+    .featured-channel {
+        grid-column: span 1; 
+    }
+}
+
+
+
     /* Menú móvil colapsable */
     .nav-menu {
         position: absolute;
