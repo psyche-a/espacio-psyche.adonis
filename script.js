@@ -1,77 +1,98 @@
-// ==========================================================================
-// 1. INICIALIZACIÓN DIRECTA E INCONDICIONAL DE ICONOS LUCIDE
-// ==========================================================================
 document.addEventListener('DOMContentLoaded', () => {
-    
-    // ==========================================================================
-    // 1. MENÚ DESPLEGABLE MÓVIL (MENÚ HAMBURGUESA)
-    // ==========================================================================
+    if (window.lucide) {
+        window.lucide.createIcons();
+    } else {
+        console.error('No se pudo cargar la biblioteca de iconos Lucide.');
+    }
+
     const menuToggle = document.getElementById('menuToggle');
     const navMenu = document.getElementById('navMenu');
 
     if (menuToggle && navMenu) {
+        const closeMenu = () => {
+            navMenu.classList.remove('open');
+            menuToggle.classList.remove('is-open');
+            menuToggle.setAttribute('aria-expanded', 'false');
+            menuToggle.setAttribute('aria-label', 'Abrir menú');
+        };
+
         menuToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('open');
+            const isOpen = navMenu.classList.toggle('open');
+            menuToggle.classList.toggle('is-open', isOpen);
+            menuToggle.setAttribute('aria-expanded', String(isOpen));
+            menuToggle.setAttribute('aria-label', isOpen ? 'Cerrar menú' : 'Abrir menú');
         });
 
-        const navLinks = navMenu.querySelectorAll('.nav-link');
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('open');
-            });
+        navMenu.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', closeMenu);
         });
+
+        document.addEventListener('keydown', event => {
+            if (event.key === 'Escape') closeMenu();
+        });
+
+        document.addEventListener('click', event => {
+            if (event.target instanceof Node &&
+                !navMenu.contains(event.target) &&
+                !menuToggle.contains(event.target)) {
+                closeMenu();
+            }
+        });
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) closeMenu();
+        }, { passive: true });
     }
 
-    // ==========================================================================
-    // 3. SISTEMA ACCORDION DINÁMICO (PREGUNTAS FRECUENTES)
-    // ==========================================================================
-    const faqTriggers = document.querySelectorAll('.faq-trigger');
+    document.querySelectorAll('.faq-trigger').forEach(trigger => {
+        trigger.addEventListener('click', () => {
+            const item = trigger.closest('.faq-item-block');
+            const panel = trigger.nextElementSibling;
 
-    faqTriggers.forEach(trigger => {
-        trigger.addEventListener('click', function() {
-            const parent = this.parentElement;
-            const panel = this.nextElementSibling;
+            if (!item || !panel) return;
 
-            if (parent.classList.contains('active')) {
-                parent.classList.remove('active');
-                panel.style.maxHeight = null;
-            } else {
-                document.querySelectorAll('.faq-item-block').forEach(item => {
-                    item.classList.remove('active');
-                    const itemPanel = item.querySelector('.faq-panel');
-                    if (itemPanel) itemPanel.style.maxHeight = null;
-                });
+            const shouldOpen = !item.classList.contains('active');
 
-                parent.classList.add('active');
-                panel.style.maxHeight = panel.scrollHeight + "px";
+            document.querySelectorAll('.faq-item-block').forEach(otherItem => {
+                otherItem.classList.remove('active');
+                const otherTrigger = otherItem.querySelector('.faq-trigger');
+                const otherPanel = otherItem.querySelector('.faq-panel');
+
+                if (otherTrigger) otherTrigger.setAttribute('aria-expanded', 'false');
+                if (otherPanel) otherPanel.style.maxHeight = null;
+            });
+
+            if (shouldOpen) {
+                item.classList.add('active');
+                trigger.setAttribute('aria-expanded', 'true');
+                panel.style.maxHeight = `${panel.scrollHeight}px`;
             }
         });
     });
 
-    // ==========================================================================
-    // 4. DETECTOR DE SECCIÓN ACTIVA (SCROLLSPY)
-    // ==========================================================================
-    const sections = document.querySelectorAll('section[id], main[id]');
-    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = [...document.querySelectorAll('section[id], main[id]')];
+    const navLinks = [...document.querySelectorAll('.nav-link')];
+    let scrollSpyScheduled = false;
 
-    function scrollSpy() {
-        const currentScroll = window.pageYOffset + 120;
+    function updateActiveLink() {
+        const visibleSections = sections.filter(section => section.getBoundingClientRect().top <= 200);
+        const activeSection = visibleSections[visibleSections.length - 1];
+        scrollSpyScheduled = false;
 
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.offsetHeight;
-            const sectionId = section.getAttribute('id');
+        if (!activeSection) return;
 
-            if (currentScroll >= sectionTop && currentScroll < sectionTop + sectionHeight) {
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === `#${sectionId}`) {
-                        link.classList.add('active');
-                    }
-                });
-            }
+        navLinks.forEach(link => {
+            const isActive = link.getAttribute('href') === `#${activeSection.id}`;
+            link.classList.toggle('active', isActive);
         });
     }
 
-    window.addEventListener('scroll', scrollSpy);
+    window.addEventListener('scroll', () => {
+        if (!scrollSpyScheduled) {
+            scrollSpyScheduled = true;
+            window.requestAnimationFrame(updateActiveLink);
+        }
+    }, { passive: true });
+
+    updateActiveLink();
 });

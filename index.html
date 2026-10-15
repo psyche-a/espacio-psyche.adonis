@@ -26,12 +26,9 @@ src="https://www.facebook.com/tr?id=1061947203137280&ev=PageView&noscript=1"
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Centro de Bienestar Psicológico | PSYCHE</title>
     <!-- Google Fonts -->
-    <link rel="preconnect" href="https://googleapis.com">
-    <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- FUENTE CSS OFICIAL DE LUCIDE ICONS (Sin JavaScript) -->
-    <link rel="stylesheet" href="https://jsdelivr.net">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
 
@@ -41,8 +38,8 @@ src="https://www.facebook.com/tr?id=1061947203137280&ev=PageView&noscript=1"
 
     <!-- Botón Flotante de WhatsApp  -->
 
-<a href="https://api.whatsapp.com/send/?phone=50362631168&text=%C2%A1Hola%21%20%F0%9F%91%8B%20Vi%20la%20p%C3%A1gina%20web%20de%20tu%20consultorio%20y%20me%20gustar%C3%ADa%20agendar%20una%20sesi%C3%B3n%20psicol%C3%B3gica.%20%F0%9F%92%9A&type=phone_number&app_absent=0" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
-    <i class="icon-message-circle"></i>
+<a href="https://api.whatsapp.com/send/?phone=50362631168&text=%C2%A1Hola%21%20%F0%9F%91%8B%20Vi%20la%20p%C3%A1gina%20web%20de%20tu%20consultorio%20y%20me%20gustar%C3%ADa%20agendar%20una%20sesi%C3%B3n%20psicol%C3%B3gica.%20%F0%9F%92%9A&type=phone_number&app_absent=0" class="whatsapp-float" aria-label="Contactar por WhatsApp" target="_blank" rel="noopener noreferrer">
+    <i data-lucide="message-circle" aria-hidden="true"></i>
 </a>
 
 
@@ -62,8 +59,10 @@ src="https://www.facebook.com/tr?id=1061947203137280&ev=PageView&noscript=1"
             </div>
 
             <!-- Menú Hamburguesa para Móviles -->
-            <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">
-                <i class="fa-solid fa-bars"></i>
+            <button class="menu-toggle" id="menuToggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="navMenu">
+                <span class="menu-toggle-line"></span>
+                <span class="menu-toggle-line"></span>
+                <span class="menu-toggle-line"></span>
             </button>
 
             <nav class="nav-menu" id="navMenu">
@@ -72,8 +71,9 @@ src="https://www.facebook.com/tr?id=1061947203137280&ev=PageView&noscript=1"
                 <a href="#sobre-mi" class="nav-link">Sobre Mí</a>
                 <a href="#faq" class="nav-link">Preguntas</a>
                 <div class="nav-buttons">
-                    <a href="https://calendar.app.google/aoNeNgeWQJg1RZPw7" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-primary">Agendar cita</a>
+                    <a href="https://calendar.app.google/aoNeNgeWQJg1RZPw7" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-primary"><i data-lucide="calendar-days" aria-hidden="true"></i> Agendar cita</a>
                     <a href="https://api.whatsapp.com/send/?phone=50362631168&text=%C2%A1Hola%21%20%F0%9F%91%8B%20Vi%20la%20p%C3%A1gina%20web%20de%20tu%20consultorio%20y%20me%20gustar%C3%ADa%20agendar%20una%20sesi%C3%B3n%20psicol%C3%B3gica.%20%F0%9F%92%9A&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-secondary">Contactar</a>
+                    <a href="https://www.instagram.com/psyche._.a/" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-secondary"><i data-lucide="instagram" aria-hidden="true"></i> Follow Me</a>
                 </div>
             </nav>
         </div>
@@ -94,10 +94,10 @@ src="https://www.facebook.com/tr?id=1061947203137280&ev=PageView&noscript=1"
                 
                 <div class="hero-buttons">
                     <a href="https://calendar.app.google/aoNeNgeWQJg1RZPw7" target="_blank" rel="noopener noreferrer" class="btn btn-lg btn-primary">
-                        <i class="fa-solid fa-calendar-days"></i> Horarios disponibles
+                        <i data-lucide="calendar-days" aria-hidden="true"></i> Horarios disponibles
                     </a>
                     <a href="https://wa.me/50362631168" target="_blank" rel="noopener noreferrer" class="btn btn-lg btn-secondary">
-                        <i class="fa-brands fa-whatsapp"></i> Contactar
+                        <i data-lucide="message-circle" aria-hidden="true"></i> Contactar
                     </a>
                 </div>
             </div>
@@ -111,21 +111,21 @@ src="https://www.facebook.com/tr?id=1061947203137280&ev=PageView&noscript=1"
             </div>
 
 <div class="tags-grid">
-                <div class="area-tag"><i class="icon-brain"></i><span>Ansiedad y preocupaciones</span></div>
-                <div class="area-tag"><i class="icon-cloud-lightning"></i><span>Estrés y sobrecarga</span></div>
-                <div class="area-tag"><i class="icon-cloud"></i><span>Tristeza y desánimo</span></div>
-                <div class="area-tag"><i class="icon-heart"></i><span>Autoestima y amor propio</span></div>
-                <div class="area-tag"><i class="icon-heart-crack"></i><span>Duelo y pérdidas</span></div>
-                <div class="area-tag"><i class="icon-activity"></i><span>Gestión de las emociones</span></div>
-                <div class="area-tag"><i class="icon-users"></i><span>Problemas familiares</span></div>
-                <div class="area-tag"><i class="icon-message-circle"></i><span>Dificultades de pareja</span></div>
-                <div class="area-tag"><i class="icon-shield-question"></i><span>Inseguridad y dudas personales</span></div>
-                <div class="area-tag"><i class="icon-refresh-cw"></i><span>Cambios importantes en la vida</span></div>
-                <div class="area-tag"><i class="icon-moon"></i><span>Problemas para dormir</span></div>
-                <div class="area-tag"><i class="icon-hand-heart"></i><span>Soledad y falta de apoyo</span></div>
-                <div class="area-tag"><i class="icon-messages-square"></i><span>Conflictos interpersonales</span></div>
-                <div class="area-tag"><i class="icon-compass"></i><span>Decisiones difíciles</span></div>
-                <div class="area-tag"><i class="icon-sprout"></i><span>Crecimiento personal</span></div>
+                <div class="area-tag"><i data-lucide="brain" aria-hidden="true"></i><span>Ansiedad y preocupaciones</span></div>
+                <div class="area-tag"><i data-lucide="cloud-lightning" aria-hidden="true"></i><span>Estrés y sobrecarga</span></div>
+                <div class="area-tag"><i data-lucide="cloud" aria-hidden="true"></i><span>Tristeza y desánimo</span></div>
+                <div class="area-tag"><i data-lucide="heart" aria-hidden="true"></i><span>Autoestima y amor propio</span></div>
+                <div class="area-tag"><i data-lucide="heart-crack" aria-hidden="true"></i><span>Duelo y pérdidas</span></div>
+                <div class="area-tag"><i data-lucide="activity" aria-hidden="true"></i><span>Gestión de las emociones</span></div>
+                <div class="area-tag"><i data-lucide="users" aria-hidden="true"></i><span>Problemas familiares</span></div>
+                <div class="area-tag"><i data-lucide="message-circle" aria-hidden="true"></i><span>Dificultades de pareja</span></div>
+                <div class="area-tag"><i data-lucide="shield-question" aria-hidden="true"></i><span>Inseguridad y dudas personales</span></div>
+                <div class="area-tag"><i data-lucide="refresh-cw" aria-hidden="true"></i><span>Cambios importantes en la vida</span></div>
+                <div class="area-tag"><i data-lucide="moon" aria-hidden="true"></i><span>Problemas para dormir</span></div>
+                <div class="area-tag"><i data-lucide="hand-heart" aria-hidden="true"></i><span>Soledad y falta de apoyo</span></div>
+                <div class="area-tag"><i data-lucide="messages-square" aria-hidden="true"></i><span>Conflictos interpersonales</span></div>
+                <div class="area-tag"><i data-lucide="compass" aria-hidden="true"></i><span>Decisiones difíciles</span></div>
+                <div class="area-tag"><i data-lucide="sprout" aria-hidden="true"></i><span>Crecimiento personal</span></div>
             </div>
 
             <div class="areas-footer-card">
@@ -145,7 +145,7 @@ src="https://www.facebook.com/tr?id=1061947203137280&ev=PageView&noscript=1"
                 <div class="glass-card info-card">
                     <p>Las sesiones se realizan de manera individual mediante videollamada, desde un espacio privado y tranquilo.</p>
                     <p>La atención está dirigida a adolescentes y adultos.</p>
-                    <p>La primera consulta permite conocer tu situación y establecer qué deseas trabajar. A partir de ello, el proceso puede continuar en diferentes modalidades de atenciónde acuerdo con tus necesidades y objetivos.</p>
+                    <p>La primera consulta permite conocer tu situación y establecer qué deseas trabajar. A partir de ello, el proceso puede continuar en diferentes modalidades de atención de acuerdo con tus necesidades y objetivos.</p>
                 </div>
 
                 <!-- Tarjeta 2: Características de la Modalidad -->
@@ -165,14 +165,37 @@ src="https://www.facebook.com/tr?id=1061947203137280&ev=PageView&noscript=1"
                     <div class="price-main">$15 <span class="currency">USD</span></div>
                     
                     <div class="flag-prices">
-                        <div class="flag-item"><span>🇲🇽</span> $275.00 MXN</div>
-                        <div class="flag-item"><span>🇨🇷</span> ₡10,500.00 CRC</div>
-                        <div class="flag-item"><span>🇨🇴</span> $49,500.00 COP</div>
+                        <div class="flag-item">
+                            <svg class="country-flag" viewBox="0 0 30 20" role="img" aria-label="Bandera de México">
+                                <rect width="10" height="20" fill="#006847"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#ce1126"/>
+                                <circle cx="15" cy="10" r="1.5" fill="#8c6b2f"/>
+                            </svg>
+                            <span>$275.00 MXN</span>
+                        </div>
+                        <div class="flag-item">
+                            <svg class="country-flag" viewBox="0 0 30 20" role="img" aria-label="Bandera de Costa Rica">
+                                <rect width="30" height="20" fill="#fff"/><rect width="30" height="3" fill="#002b7f"/><rect y="5" width="30" height="10" fill="#ce1126"/><rect y="17" width="30" height="3" fill="#002b7f"/>
+                            </svg>
+                            <span>₡10,500.00 CRC</span>
+                        </div>
+                        <div class="flag-item">
+                            <svg class="country-flag" viewBox="0 0 30 20" role="img" aria-label="Bandera de Colombia">
+                                <rect width="30" height="10" fill="#fcd116"/><rect y="10" width="30" height="5" fill="#003893"/><rect y="15" width="30" height="5" fill="#ce1126"/>
+                            </svg>
+                            <span>$49,500.00 COP</span>
+                        </div>
+                        <div class="flag-item">
+                            <svg class="country-flag" viewBox="0 0 30 20" role="img" aria-label="Bandera de Argentina">
+                                <rect width="30" height="20" fill="#fff"/><rect width="30" height="6.67" fill="#74acdf"/><rect y="13.33" width="30" height="6.67" fill="#74acdf"/>
+                                <circle cx="15" cy="10" r="2" fill="#f6b40e"/>
+                            </svg>
+                            <span>$30.000 ARS</span>
+                        </div>
                     </div>
 
                     <p class="price-desc">Una primera sesión para conversar sobre lo que estás viviendo, conocer tu situación y definir cómo puedo acompañarte.</p>
                     
-                    <a href="https://calendar.app.google/aoNeNgeWQJg1RZPw7" target="_blank" rel="noopener noreferrer" class="btn btn-md btn-primary btn-full">Reservar primera consulta</a>
+                    <a href="https://calendar.app.google/aoNeNgeWQJg1RZPw7" target="_blank" rel="noopener noreferrer" class="btn btn-md btn-primary btn-full"><i data-lucide="calendar-days" aria-hidden="true"></i> Reservar primera consulta</a>
                     
                     <span class="price-sub-discreet">Sesiones posteriores: $30 USD · 60 minutos</span>
                 </div>
@@ -189,23 +212,31 @@ src="https://www.facebook.com/tr?id=1061947203137280&ev=PageView&noscript=1"
 
             <div class="steps-grid">
                 <div class="step-card">
-                    <span class="step-num">PASO 01</span>
-                    <h3>Reserva tu primera consulta</h3>
+                    <div class="step-heading">
+                        <span class="step-num">PASO 01</span>
+                        <h3>Reserva tu primera consulta</h3>
+                    </div>
                     <p>Elige el día y horario que mejor se adapte a ti. Podrás reservar tu espacio de atención online de forma sencilla.</p>
                 </div>
                 <div class="step-card">
-                    <span class="step-num">PASO 02</span>
-                    <h3>Hablemos de lo que estás viviendo</h3>
+                    <div class="step-heading">
+                        <span class="step-num">PASO 02</span>
+                        <h3>Hablemos de lo que estás viviendo</h3>
+                    </div>
                     <p>En la primera consulta conversaremos sobre tu situación, tus inquietudes y aquello que te gustaría comprender o mejorar.</p>
                 </div>
                 <div class="step-card">
-                    <span class="step-num">PASO 03</span>
-                    <h3>Identifiquemos qué necesitas</h3>
+                    <div class="step-heading">
+                        <span class="step-num">PASO 03</span>
+                        <h3>Identifiquemos qué necesitas</h3>
+                    </div>
                     <p>Exploraremos tus necesidades y las opciones de acompañamiento que podrían ser adecuadas para tu situación.</p>
                 </div>
                 <div class="step-card">
-                    <span class="step-num">PASO 04</span>
-                    <h3>Decide cómo continuar</h3>
+                    <div class="step-heading">
+                        <span class="step-num">PASO 04</span>
+                        <h3>Decide cómo continuar</h3>
+                    </div>
                     <p>Si deseas seguir, acordaremos los objetivos y los próximos pasos según tus necesidades. Tú podrás decidir cómo avanzar.</p>
                 </div>
             </div>
@@ -213,7 +244,7 @@ src="https://www.facebook.com/tr?id=1061947203137280&ev=PageView&noscript=1"
             <div class="steps-footer">
                 <p>«Tu proceso, tus tiempos y tus decisiones. Te acompañaré con orientación profesional y respeto por lo que necesitas.»</p>
                 <a href="https://calendar.app.google/aoNeNgeWQJg1RZPw7" target="_blank" rel="noopener noreferrer" class="btn btn-lg btn-primary">
-                    Quiero comenzar <i class="fa-solid fa-arrow-right"></i>
+                    Quiero comenzar <i data-lucide="arrow-right" aria-hidden="true"></i>
                 </a>
             </div>
         </section>
@@ -222,18 +253,24 @@ src="https://www.facebook.com/tr?id=1061947203137280&ev=PageView&noscript=1"
         <section class="about-section container" id="sobre-mi">
             <div class="about-main-card glass-card">
                 <div class="about-grid">
-                    <div class="about-img-wrapper">
-                        <img src="profile.png" alt="Adonis Lozano - Psicólogo" class="about-img">
-                    </div>
                     <div class="about-text-content">
                         <span class="section-tag">SOBRE MÍ</span>
-                        <h2>Adonis Lozano</h2>
-                        <span class="about-title-sub">Psicólogo</span>
                         <p class="quote">"Todos merecemos un espacio donde ser escuchados, sentirnos comprendidos y aprender a cuidar de nosotros mismos. Tú también lo mereces"</p>
+                    </div>
+                    <div class="about-profile">
+                        <div class="about-img-wrapper">
+                            <img src="profile.jpg" alt="Adonis Lozano - Psicólogo" class="about-img" loading="lazy" decoding="async">
+                        </div>
+                        <div class="about-identity">
+                            <h2>Adonis Lozano</h2>
+                            <span class="about-title-sub">Psicólogo</span>
+                        </div>
+                    </div>
+                    <div class="about-biography">
                         <p>Como psicólogo, mi propósito es ofrecerte un espacio profesional, respetuoso y confidencial donde puedas expresarte con libertad, explorar lo que estás viviendo y comprender mejor tus emociones, pensamientos y experiencias.</p>
                         <p>Cada persona tiene una historia y necesidades diferentes. Por eso, busco acompañarte sin juicios, respetando tu ritmo y ayudándote a identificar herramientas y nuevas perspectivas que puedan contribuir a tu bienestar emocional.</p>
                         <p>No necesitas tener todo claro para comenzar. Podemos empezar por aquello que hoy te preocupa y avanzar paso a paso.</p>
-                        <p>"Creo que comprender lo que sentimos es un primer paso para generar cambios significativos en nuestra vida."</p>
+                        <p class="about-highlight">Creo que comprender lo que sentimos es un primer paso para generar cambios significativos en nuestra vida.</p>
                     </div>
                 </div>
             </div>
@@ -308,7 +345,7 @@ src="https://www.facebook.com/tr?id=1061947203137280&ev=PageView&noscript=1"
                 <div class="services-action flex-center" style="margin-top: 40px;">
                     <span>¿No sabes cuál elegir?</span>
                     <a href="https://api.whatsapp.com/send/?phone=50362631168&text=%C2%A1Hola%21%20%F0%9F%91%8B%2C%20encontr%C3%A9%20la%20p%C3%A1gina%20web%20de%20Psyche%20y%20me%20gustar%C3%ADa%20dar%20el%20primer%20paso%20para%20cuidar%20mi%20bienestar%20emocional.%20%F0%9F%92%9A%20Quisiera%20conocer%20m%C3%A1s%20sobre%20sus%20servicios%20de%20atenci%C3%B3n%20psicol%C3%B3gica%20online.%20%F0%9F%8C%BF&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer" class="btn btn-md btn-secondary">
-                        <i class="fa-brands fa-whatsapp"></i> Agenda tu primera consulta
+                        <i data-lucide="message-circle" aria-hidden="true"></i> Agenda tu primera consulta
                     </a>
                 </div>
             </div>
@@ -327,7 +364,7 @@ src="https://www.facebook.com/tr?id=1061947203137280&ev=PageView&noscript=1"
 
                     <!-- WhatsApp -->
                     <div class="channel-card">
-                        <div class="channel-icon"><i class="icon-message-circle"></i></div>
+                        <div class="channel-icon"><i data-lucide="message-circle" aria-hidden="true"></i></div>
                         <h3>WhatsApp</h3>
                         <span class="channel-data-visible">Inicia una conversación</span>
                         <a href="https://api.whatsapp.com/send/?phone=50362631168&text=%C2%A1Hola%21%20%F0%9F%91%8B%20Vi%20la%20p%C3%A1gina%20web%20de%20tu%20consultorio%20y%20me%20gustar%C3%ADa%20agendar%20una%20sesi%C3%B3n%20psicol%C3%B3gica.%20%F0%9F%92%9A&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-secondary btn-full channel-btn-action">Enviar mensaje</a>
@@ -335,7 +372,7 @@ src="https://www.facebook.com/tr?id=1061947203137280&ev=PageView&noscript=1"
 
                     <!-- Email -->
                     <div class="channel-card">
-                        <div class="channel-icon"><i class="icon-mail"></i></div>
+                        <div class="channel-icon"><i data-lucide="mail" aria-hidden="true"></i></div>
                         <h3>Email</h3>
                         <span class="channel-data-visible email-text">psyche.adonis@gmail.com</span>
                         <a href="mailto:psyche.adonis@gmail.com" class="btn btn-sm btn-secondary btn-full channel-btn-action">Enviar correo</a>
@@ -343,11 +380,11 @@ src="https://www.facebook.com/tr?id=1061947203137280&ev=PageView&noscript=1"
 
                     <!-- Programar Cita Destacada -->
                     <div class="channel-card featured-channel">
-                        <div class="featured-badge">Recomendado</div>
-                        <div class="channel-icon"><i class="icon-calendar"></i></div>
+                        <div class="featured-badge">Calendario</div>
+                        <div class="channel-icon"><i data-lucide="calendar-days" aria-hidden="true"></i></div>
                         <h3>Programar cita</h3>
                         <span class="channel-data-visible">Elegir día y horario</span>
-                        <a href="https://calendar.app.google/aoNeNgeWQJg1RZPw7" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-primary btn-full channel-btn-action">Consulta horarios disponibles</a>
+                        <a href="https://calendar.app.google/aoNeNgeWQJg1RZPw7" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-primary btn-full channel-btn-action"><i data-lucide="calendar-days" aria-hidden="true"></i> Ver horarios disponibles</a>
                     </div>
                 </div>
             </div>
@@ -365,11 +402,11 @@ src="https://www.facebook.com/tr?id=1061947203137280&ev=PageView&noscript=1"
             <div class="faq-accordion-container">
                 <!-- Pregunta 1 -->
                 <div class="faq-item-block">
-                    <button class="faq-trigger">
+                    <button class="faq-trigger" type="button" aria-expanded="false" aria-controls="faq-answer-1">
                         <span>¿Cómo sé si necesito atención psicológica?</span>
-                        <i data-lucide="chevron-down" class="faq-icon"></i>
+                        <i data-lucide="chevron-down" class="faq-icon" aria-hidden="true"></i>
                     </button>
-                    <div class="faq-panel">
+                    <div class="faq-panel" id="faq-answer-1">
                         <div class="faq-content">
                             <p>Si algo está afectando tu tranquilidad, tus relaciones o tu vida cotidiana, hablar con un profesional puede ayudarte a comprender mejor lo que ocurre y explorar opciones de apoyo. No necesitas estar pasando por algo grave para comenzar.</p>
                         </div>
@@ -378,11 +415,11 @@ src="https://www.facebook.com/tr?id=1061947203137280&ev=PageView&noscript=1"
 
                 <!-- Pregunta 2 -->
                 <div class="faq-item-block">
-                    <button class="faq-trigger">
+                    <button class="faq-trigger" type="button" aria-expanded="false" aria-controls="faq-answer-2">
                         <span>¿Y si no sé cómo explicar lo que me pasa?</span>
-                        <i data-lucide="chevron-down" class="faq-icon"></i>
+                        <i data-lucide="chevron-down" class="faq-icon" aria-hidden="true"></i>
                     </button>
-                    <div class="faq-panel">
+                    <div class="faq-panel" id="faq-answer-2">
                         <div class="faq-content">
                             <p>No necesitas tener las palabras perfectas ni saber por dónde empezar. Podemos conversar sobre lo que te preocupa, cómo te has sentido últimamente y aquello que te llevó a buscar apoyo.</p>
                         </div>
@@ -391,11 +428,11 @@ src="https://www.facebook.com/tr?id=1061947203137280&ev=PageView&noscript=1"
 
                 <!-- Pregunta 3 -->
                 <div class="faq-item-block">
-                    <button class="faq-trigger">
+                    <button class="faq-trigger" type="button" aria-expanded="false" aria-controls="faq-answer-3">
                         <span>¿Qué servicios de atención psicológica ofrecen?</span>
-                        <i data-lucide="chevron-down" class="faq-icon"></i>
+                        <i data-lucide="chevron-down" class="faq-icon" aria-hidden="true"></i>
                     </button>
-                    <div class="faq-panel">
+                    <div class="faq-panel" id="faq-answer-3">
                         <div class="faq-content">
                             <p>Ofrecemos terapia psicológica, asesoría psicológica, intervención psicológica en crisis y acompañamiento psicológico. Si no sabes cuál necesitas, podemos explorar tu situación en la primera consulta y orientarte sobre las opciones más adecuadas.</p>
                         </div>
@@ -404,11 +441,11 @@ src="https://www.facebook.com/tr?id=1061947203137280&ev=PageView&noscript=1"
 
                 <!-- Pregunta 4 -->
                 <div class="faq-item-block">
-                    <button class="faq-trigger">
+                    <button class="faq-trigger" type="button" aria-expanded="false" aria-controls="faq-answer-4">
                         <span>¿Cómo se realizan las sesiones y qué pasa con mi privacidad?</span>
-                        <i data-lucide="chevron-down" class="faq-icon"></i>
+                        <i data-lucide="chevron-down" class="faq-icon" aria-hidden="true"></i>
                     </button>
-                    <div class="faq-panel">
+                    <div class="faq-panel" id="faq-answer-4">
                         <div class="faq-content">
                             <p>Las sesiones se realizan online mediante videollamada por WhatsApp, Google Meet u otra plataforma acordada. La atención se desarrolla bajo el principio de confidencialidad profesional, con las excepciones legales y de seguridad aplicables.</p>
                         </div>
@@ -417,11 +454,11 @@ src="https://www.facebook.com/tr?id=1061947203137280&ev=PageView&noscript=1"
 
                 <!-- Pregunta 5 -->
                 <div class="faq-item-block">
-                    <button class="faq-trigger">
+                    <button class="faq-trigger" type="button" aria-expanded="false" aria-controls="faq-answer-5">
                         <span>¿Cuánto cuesta una sesión psicológica?</span>
-                        <i data-lucide="chevron-down" class="faq-icon"></i>
+                        <i data-lucide="chevron-down" class="faq-icon" aria-hidden="true"></i>
                     </button>
-                    <div class="faq-panel">
+                    <div class="faq-panel" id="faq-answer-5">
                         <div class="faq-content">
                             <p>La primera sesión tiene un precio promocional de <strong>$15 USD</strong>. Las sesiones posteriores tienen un precio de referencia de <strong>$30 USD</strong>. El costo final puede variar según el país, el método de pago y la modalidad de atención. Te confirmaremos el precio antes de reservar.</p>
                         </div>
@@ -430,11 +467,11 @@ src="https://www.facebook.com/tr?id=1061947203137280&ev=PageView&noscript=1"
 
                 <!-- Pregunta 6 -->
                 <div class="faq-item-block">
-                    <button class="faq-trigger">
+                    <button class="faq-trigger" type="button" aria-expanded="false" aria-controls="faq-answer-6">
                         <span>¿Qué métodos de pago aceptan?</span>
-                        <i data-lucide="chevron-down" class="faq-icon"></i>
+                        <i data-lucide="chevron-down" class="faq-icon" aria-hidden="true"></i>
                     </button>
-                    <div class="faq-panel">
+                    <div class="faq-panel" id="faq-answer-6">
                         <div class="faq-content">
                             <p>Aceptamos pagos con tarjeta, PayPal, transferencias internacionales y servicios de remesas, según disponibilidad. Puedes consultarnos si prefieres utilizar un método de pago específico.</p>
                         </div>
@@ -443,11 +480,11 @@ src="https://www.facebook.com/tr?id=1061947203137280&ev=PageView&noscript=1"
 
                 <!-- Pregunta 7 -->
                 <div class="faq-item-block">
-                    <button class="faq-trigger">
+                    <button class="faq-trigger" type="button" aria-expanded="false" aria-controls="faq-answer-7">
                         <span>¿Puedo agendar si tengo horarios de trabajo complicados?</span>
-                        <i data-lucide="chevron-down" class="faq-icon"></i>
+                        <i data-lucide="chevron-down" class="faq-icon" aria-hidden="true"></i>
                     </button>
-                    <div class="faq-panel">
+                    <div class="faq-panel" id="faq-answer-7">
                         <div class="faq-content">
                             <p>Sí. Puedes indicarnos los días y horarios que mejor se adapten a tu rutina. Revisaremos la disponibilidad para encontrar una alternativa conveniente.</p>
                         </div>
@@ -462,10 +499,11 @@ src="https://www.facebook.com/tr?id=1061947203137280&ev=PageView&noscript=1"
                 <h2>Darte un espacio también es una forma de comenzar.</h2>
                 <p>No necesitas tener todas las respuestas para pedir apoyo. Podemos comenzar conversando sobre lo que estás viviendo.</p>
                 <div class="closure-buttons">
-                    <a href="https://calendar.app.google/aoNeNgeWQJg1RZPw7" target="_blank" rel="noopener noreferrer" class="btn btn-lg btn-primary">Agendar cita</a>
+                    <a href="https://calendar.app.google/aoNeNgeWQJg1RZPw7" target="_blank" rel="noopener noreferrer" class="btn btn-lg btn-primary"><i data-lucide="calendar-days" aria-hidden="true"></i> Agendar cita</a>
                     <a href="https://api.whatsapp.com/send/?phone=50362631168&text=%C2%A1Hola%21%20%F0%9F%91%8B%20Vi%20la%20p%C3%A1gina%20web%20de%20tu%20consultorio%20y%20me%20gustar%C3%ADa%20agendar%20una%20sesi%C3%B3n%20psicol%C3%B3gica.%20%F0%9F%92%9A&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer" class="btn btn-lg btn-secondary">
-                        <i class="fa-brands fa-whatsapp"></i> WhatsApp
+                        <i data-lucide="message-circle" aria-hidden="true"></i> WhatsApp
                     </a>
+                    <a href="https://www.instagram.com/psyche._.a/" target="_blank" rel="noopener noreferrer" class="btn btn-lg btn-secondary"><i data-lucide="instagram" aria-hidden="true"></i> Follow Me</a>
                 </div>
             </div>
         </section>
@@ -476,6 +514,7 @@ src="https://www.facebook.com/tr?id=1061947203137280&ev=PageView&noscript=1"
     </footer>
 
     <!-- Scripts finales -->
-    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
+    <script src="script.js" defer></script>
 </body>
 </html>
