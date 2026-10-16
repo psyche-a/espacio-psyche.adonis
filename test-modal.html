@@ -10,7 +10,7 @@
 
   .psyche-modal-overlay {
     position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
+    inset: 0;
     background: rgba(5, 30, 20, 0.65);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
@@ -18,26 +18,120 @@
     justify-content: center;
     align-items: center;
     z-index: 9999;
-    padding: 15px;
+    padding: max(12px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) max(12px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
     box-sizing: border-box;
   }
 
   .psyche-modal-content {
-    background: var(--psyche-bg-glass);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid var(--psyche-border-glass);
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(243, 250, 247, 0.94));
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
     width: 100%;
     max-width: 700px;
-    max-height: 90vh;
+    max-height: min(900px, 90vh);
+    max-height: min(900px, 90dvh);
     overflow-y: auto;
     border-radius: 20px;
-    padding: 35px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    padding: 24px 32px 30px;
+    box-shadow: 0 28px 80px rgba(3, 35, 24, 0.32), 0 0 0 1px rgba(39, 174, 96, 0.08);
     position: relative;
+    overscroll-behavior: contain;
+    scrollbar-gutter: stable;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     color: #1e293b;
     animation: psycheFadeIn 0.3s ease-out;
+  }
+
+  .psyche-test-header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    display: grid;
+    grid-template-columns: 86px minmax(0, 1fr) 42px;
+    align-items: center;
+    gap: 18px;
+    margin: -24px -32px 24px;
+    padding: 16px 20px 14px;
+    border-bottom: 1px solid rgba(39, 174, 96, 0.16);
+    background: rgba(249, 253, 251, 0.93);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+  .psyche-modal-content.is-results .psyche-test-header {
+    grid-template-columns: 78px minmax(0, 1fr) 42px;
+  }
+  .psyche-modal-content.is-results #psycheProgressPercent,
+  .psyche-modal-content.is-results .psyche-progress-bar { display: none; }
+  .psyche-modal-content.is-results .psyche-progress-wrap { height: auto; }
+  .psyche-modal-content.is-results .psyche-progress-meta {
+    position: static;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    color: #365f53;
+    gap: 4px;
+    text-align: center;
+  }
+  .psyche-results-label-main {
+    font-size: 12px;
+    font-weight: 750;
+    letter-spacing: .13em;
+    line-height: 1.2;
+  }
+  .psyche-results-label-sub {
+    display: inline-block;
+    padding: 4px 11px;
+    border: 1px solid rgba(49, 126, 91, .2);
+    border-radius: 999px;
+    background: linear-gradient(135deg, rgba(236, 248, 241, .9), rgba(221, 241, 229, .72));
+    color: #285d4b;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  .psyche-header-logo {
+    display: block;
+    width: 78px;
+    max-height: 54px;
+    object-fit: contain;
+  }
+  .psyche-progress-wrap { position: relative; min-width: 0; height: 54px; }
+  .psyche-progress-meta {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 7px;
+    color: #526b63;
+    font-size: 12px;
+    font-weight: 650;
+  }
+  .psyche-progress-bar {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 9px;
+    margin: 0;
+    transform: translateY(-50%);
+    background: rgba(13, 92, 63, 0.12);
+    border: 1px solid rgba(13, 92, 63, 0.1);
+    border-radius: 999px;
+    overflow: hidden;
+    box-shadow: inset 0 1px 3px rgba(7, 54, 36, 0.08);
+  }
+  .psyche-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #4c887c, #27ae60 70%, #73c9a2);
+    width: 0%;
+    border-radius: inherit;
+    transition: width 0.4s ease;
+    box-shadow: 0 0 10px rgba(39, 174, 96, 0.35);
   }
 
   @keyframes psycheFadeIn {
@@ -47,37 +141,76 @@
 
   /* Botón de cierre más notable y elegante */
   .psyche-close-btn {
-    position: absolute;
-    top: 20px; right: 20px;
-    border: 2px solid rgba(13, 92, 63, 0.2);
-    background: rgba(39, 174, 96, 0.12);
-    width: 42px; height: 42px; border-radius: 50%;
+    position: relative;
+    border: 1px solid rgba(13, 92, 63, 0.18);
+    background: rgba(255, 255, 255, 0.8);
+    width: 42px; height: 42px; border-radius: 14px;
     font-size: 24px; cursor: pointer; color: var(--psyche-primary);
     display: flex; align-items: center; justify-content: center;
     transition: all 0.2s ease;
-    z-index: 5;
     font-weight: bold;
+    box-shadow: 0 3px 10px rgba(13, 92, 63, 0.08);
   }
-  .psyche-close-btn:hover { 
-    background: var(--psyche-primary); 
-    color: white; 
-    border-color: var(--psyche-primary);
-    transform: scale(1.05);
+  .psyche-close-btn:hover {
+    background: rgba(224, 242, 233, 0.96);
+    color: #0d5c3f;
+    border-color: rgba(13, 92, 63, 0.3);
+    transform: rotate(4deg);
+    box-shadow: 0 5px 14px rgba(13, 92, 63, 0.12);
   }
 
-  .psyche-progress-bar {
-    width: 100%; height: 8px; background: rgba(39, 174, 96, 0.15);
-    border-radius: 4px; margin-bottom: 25px; overflow: hidden;
+  .psyche-brand-mark { display: block; width: min(190px, 58%); max-height: 92px; object-fit: contain; margin: 6px auto 18px; }
+  .psyche-welcome-content, .psyche-results-content { text-align: center; }
+  .psyche-welcome-content ul { max-width: 570px; margin: 16px auto; padding-left: 22px; text-align: left; }
+  .psyche-results-content > p { text-align: justify; }
+  .psyche-results-content h2 { text-align: center; }
+  .psyche-results-content > h3 { text-align: center; }
+  .psyche-results-cards { display: grid; gap: 14px; margin-top: 22px; }
+  .psyche-result-card {
+    padding: 18px 20px;
+    border: 1px solid rgba(39, 174, 96, 0.18);
+    border-radius: 16px;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(239, 248, 244, 0.82));
+    box-shadow: 0 8px 22px rgba(12, 72, 49, 0.07), inset 0 1px rgba(255,255,255,.9);
+    text-align: left;
   }
-  .psyche-progress-fill {
-    height: 100%; background: var(--psyche-accent); width: 0%;
-    transition: width 0.4s ease;
+  .psyche-result-card h3 { margin: 0 0 12px; color: var(--psyche-primary); font-size: 17px; }
+  .psyche-result-card p { margin: 8px 0; color: #334155; line-height: 1.55; font-size: 14px; }
+  .psyche-result-card ul { margin: 8px 0 0; padding-left: 20px; color: #334155; }
+  .psyche-result-card li { padding: 3px 0; line-height: 1.5; font-size: 14px; }
+  .psyche-context-result { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+  .psyche-context-result strong { font-size: 14px; color: #425d54; font-weight: 650; }
+  .psyche-context-result .psyche-context-status { margin-left: auto; }
+  .psyche-context-result .psyche-context-status svg { width: 20px; height: 20px; }
+  .psyche-context-status { display: inline-flex; align-items: center; gap: 6px; font-weight: 750; white-space: nowrap; }
+  .psyche-context-status.is-positive { color: #16824b; }
+  .psyche-context-status.is-negative { color: #c53d42; }
+  .psyche-nav-buttons { display: flex; align-items: center; justify-content: space-between; margin-top: 26px; gap: 12px; }
+  .psyche-nav-back, .psyche-reset-link {
+    display: inline-flex; align-items: center; justify-content: center; gap: 7px;
+    border: 0; background: transparent; color: #41685c; cursor: pointer;
+    font: inherit; font-size: 14px; font-weight: 650; padding: 9px 6px;
+    transition: color .2s ease, transform .2s ease;
   }
+  .psyche-nav-back:hover, .psyche-reset-link:hover { color: var(--psyche-primary); transform: translateY(-1px); }
+  .psyche-nav-back svg, .psyche-reset-link svg { width: 18px; height: 18px; }
 
   .psyche-card h2 { font-size: 24px; margin-bottom: 12px; color: var(--psyche-primary); }
   .psyche-card p, .psyche-card li { font-size: 15px; line-height: 1.6; color: #334155; }
   .psyche-card ul { margin: 15px 0; padding-left: 20px; }
-
+  .psyche-step-title { display: flex; align-items: center; gap: 10px; color: var(--psyche-primary); }
+  .psyche-step-title svg, .psyche-result-card h3 svg { width: 21px; height: 21px; flex: 0 0 auto; }
+  .psyche-result-section { padding: 10px 0; border-top: 1px solid rgba(39, 174, 96, 0.12); }
+  .psyche-result-section:first-of-type { border-top: 0; padding-top: 0; }
+  .psyche-result-section p { margin: 0; }
+  .psyche-result-section ul { margin: 5px 0 0; }
+  .psyche-result-empty { color: #74847f !important; font-size: 13px !important; }
+  .psyche-disclaimer { margin: 18px 0 0; padding: 12px 15px; border-left: 3px solid #6caa8f; border-radius: 0 10px 10px 0; background: rgba(76, 136, 124, 0.08); color: #526b63 !important; font-size: 13px !important; text-align: justify !important; }
+  .psyche-next-title { margin: 22px 0 6px; color: var(--psyche-primary); font-size: 18px; text-align: left; }
+  .psyche-results-next { margin-top: 0; }
+  .psyche-results-controls { margin-top: 18px; }
+  .psyche-results-controls .psyche-nav-back { width: 40px; height: 40px; border: 1px solid rgba(13, 92, 63, 0.14); border-radius: 50%; background: rgba(255,255,255,.65); }
+  .psyche-btn svg { width: 17px; height: 17px; vertical-align: middle; margin-left: 5px; }
   .psyche-question-box {
     background: rgba(255, 255, 255, 0.9);
     border: 1px solid rgba(39, 174, 96, 0.25);
@@ -121,34 +254,101 @@
   .psyche-btn-secondary { background: rgba(39, 174, 96, 0.12); color: var(--psyche-primary); }
   .psyche-btn-secondary:hover { background: rgba(39, 174, 96, 0.2); }
 
-  .psyche-action-container { display: flex; flex-direction: column; gap: 12px; margin-top: 20px; }
+  .psyche-btn-primary {
+    color: #285d4b;
+    border: 1px solid rgba(31, 117, 82, 0.28);
+    background: linear-gradient(135deg, rgba(235, 248, 241, 0.94), rgba(214, 239, 226, 0.76));
+    box-shadow: 0 5px 15px rgba(38, 111, 79, 0.1), inset 0 1px rgba(255,255,255,.9);
+  }
+  .psyche-btn-primary:hover {
+    color: #194d3b;
+    background: linear-gradient(135deg, rgba(224, 243, 233, 0.98), rgba(203, 233, 216, 0.9));
+    border-color: rgba(31, 117, 82, 0.38);
+  }
+  .psyche-opt-btn.selected {
+    color: #285d4b;
+    background: linear-gradient(135deg, rgba(232, 247, 239, 0.98), rgba(215, 239, 225, 0.9));
+    border-color: rgba(31, 117, 82, 0.42);
+    box-shadow: inset 0 1px rgba(255,255,255,.85), 0 3px 10px rgba(38,111,79,.08);
+  }
+
+  .psyche-action-container { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 20px; }
   .psyche-action-btn {
     display: inline-flex; align-items: center; justify-content: center; gap: 10px;
     text-decoration: none; padding: 14px 20px; border-radius: 10px; font-weight: 600; font-size: 15px; text-align: center;
     box-shadow: 0 4px 12px rgba(0,0,0,0.08); transition: opacity 0.2s;
   }
-  .psyche-action-btn:hover { opacity: 0.92; }
-  .psyche-whatsapp-btn { background: #25D366; color: white; }
-  .psyche-calendar-btn { background: var(--psyche-primary); color: white; }
-  .psyche-whatsapp-share-btn { background: #128c7e; color: white; }
+  .psyche-action-btn-share { grid-column: 1 / -1; }
+  .psyche-action-btn {
+    min-height: 52px;
+    border: 1px solid rgba(31, 117, 82, 0.24);
+    box-shadow: 0 6px 16px rgba(21, 78, 57, 0.09), inset 0 1px rgba(255,255,255,.8);
+    transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+  }
+  .psyche-action-btn:hover { transform: translateY(-2px); box-shadow: 0 9px 20px rgba(21,78,57,.14), inset 0 1px rgba(255,255,255,.85); }
+  .psyche-whatsapp-btn { background: linear-gradient(135deg, rgba(226, 246, 234, .98), rgba(207, 239, 220, .9)); color: #245c43; }
+  .psyche-calendar-btn { background: linear-gradient(135deg, rgba(240, 248, 245, .98), rgba(219, 237, 230, .9)); color: #315d52; }
+  .psyche-whatsapp-share-btn { background: linear-gradient(135deg, rgba(232, 246, 242, .98), rgba(212, 237, 229, .9)); color: #285e52; }
+  .psyche-action-btn svg { width: 20px; height: 20px; flex: 0 0 auto; }
 
   .psyche-crisis-overlay {
-    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(255, 255, 255, 0.97); backdrop-filter: blur(10px);
-    display: flex; justify-content: center; align-items: center; padding: 25px; z-index: 10;
-    box-sizing: border-box; text-align: center; border-radius: 20px;
+    position: fixed; inset: 0;
+    background: rgba(4, 27, 19, 0.72); backdrop-filter: blur(9px); -webkit-backdrop-filter: blur(9px);
+    display: flex; justify-content: center; align-items: center;
+    padding: max(16px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(16px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+    z-index: 10001; box-sizing: border-box; text-align: center;
   }
+  .psyche-crisis-card {
+    width: min(100%, 600px);
+    max-height: min(88vh, 760px);
+    max-height: min(88dvh, 760px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: clamp(20px, 4vw, 32px);
+    border: 1px solid rgba(255, 255, 255, 0.88);
+    border-radius: 22px;
+    background: linear-gradient(145deg, rgba(255,255,255,.99), rgba(237,248,243,.98));
+    box-shadow: 0 30px 90px rgba(0,0,0,.34), inset 0 1px rgba(255,255,255,.95);
+    box-sizing: border-box;
+  }
+  .psyche-crisis-card p { text-align: center; }
 
   @media (max-width: 480px) {
-    .psyche-modal-content { padding: 20px; max-height: 95vh; }
-    .psyche-options { flex-direction: column; gap: 10px; }
+    .psyche-modal-content { padding: 16px 17px 22px; max-height: 95vh; max-height: 95dvh; border-radius: 17px; }
+    .psyche-test-header { top: 0; grid-template-columns: 57px minmax(0, 1fr) 38px; gap: 10px; margin: -16px -17px 19px; padding: 12px 12px 11px; }
+    .psyche-modal-content.is-results .psyche-test-header { grid-template-columns: 54px minmax(0, 1fr) 38px; gap: 8px; }
+    .psyche-header-logo { width: 54px; max-height: 42px; }
+    .psyche-modal-content.is-results .psyche-header-logo { width: 52px; }
+    .psyche-results-label-sub { padding: 4px 8px; font-size: 12px; }
+    .psyche-close-btn { width: 38px; height: 38px; border-radius: 12px; }
+    .psyche-options { flex-direction: row; gap: 10px; }
+    .psyche-question-box { padding: 17px; }
+    .psyche-action-container { gap: 9px; }
+    .psyche-action-btn { padding: 12px 8px; font-size: 13px; }
+    .psyche-result-card { padding: 16px; }
+  }
+  @media (max-width: 360px) {
+    .psyche-test-header { grid-template-columns: 45px minmax(0, 1fr) 36px; gap: 7px; }
+    .psyche-modal-content.is-results .psyche-test-header { grid-template-columns: 44px minmax(0, 1fr) 36px; gap: 6px; }
+    .psyche-header-logo { width: 44px; }
+    .psyche-progress-meta { font-size: 10px; }
+    .psyche-action-btn { font-size: 12px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .psyche-modal-content, .psyche-progress-fill, .psyche-question-box, .psyche-btn, .psyche-action-btn { animation: none; transition: none; }
   }
 </style>
 
-<div id="psycheTestModal" class="psyche-modal-overlay">
-  <div class="psyche-modal-content">
-    <button class="psyche-close-btn" onclick="cerrarTestModal()" title="Cerrar ventana">&times;</button>
-    <div class="psyche-progress-bar"><div id="psycheProgressFill" class="psyche-progress-fill"></div></div>
+<div id="psycheTestModal" class="psyche-modal-overlay" role="presentation">
+  <div class="psyche-modal-content" role="dialog" aria-modal="true" aria-label="Test de bienestar Psyche" tabindex="-1">
+    <div class="psyche-test-header">
+      <img class="psyche-header-logo" src="logo1.png" alt="Psyche">
+      <div class="psyche-progress-wrap">
+        <div class="psyche-progress-meta"><span id="psycheProgressLabel">Bienvenida</span><span id="psycheProgressPercent">0%</span></div>
+        <div class="psyche-progress-bar" role="progressbar" aria-label="Progreso del test" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div id="psycheProgressFill" class="psyche-progress-fill"></div></div>
+      </div>
+      <button type="button" class="psyche-close-btn" onclick="cerrarTestModal()" aria-label="Cerrar test" title="Cerrar test y volver a la página">&times;</button>
+    </div>
     <div id="psycheTestContainer"></div>
   </div>
 </div>

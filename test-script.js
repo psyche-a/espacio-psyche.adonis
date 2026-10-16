@@ -3,6 +3,7 @@
 const WHATSAPP_CLINICA = "50362631168";
 const LINK_CALENDAR = "https://calendar.app.google/aoNeNgeWQJg1RZPw7";
 const LINK_WHATSAPP_AGENDA = "https://api.whatsapp.com/send/?phone=50362631168&text=%C2%A1Hola%21%20%F0%9F%91%8B%20He%20realizado%20el%20test%20de%20bienestar%20Psyche%20y%20me%20gustar%C3%ADa%20agendar%20una%20sesi%C3%B3n%20psicol%C3%B3gica%20para%20hablar%20sobre%20lo%20que%20estoy%20viviendo%20y%20recibir%20orientaci%C3%B3n.%20%F0%9F%92%9A&type=phone_number&app_absent=0";
+const TEST_MODAL_URL = new URL("test-modal.html", document.currentScript.src);
 
 // Bloques del test con mapeo de áreas y síntomas clínicos
 const testData = [
@@ -10,16 +11,19 @@ const testData = [
     title: "Bienvenida",
     type: "welcome",
     content: `
-      <h2>Test de Bienestar Emocional | Psyche</h2>
-      <p>Dar el primer paso para entender lo que sientes requiere valentía. Este test breve te ayudará a identificar posibles señales de malestar o sobrecarga emocional que podrías estar experimentando en este momento.</p>
+        <div class="psyche-welcome-content">
+        <img class="psyche-brand-mark" src="logo1.png" alt="Psyche">
+        <h2>Test de Bienestar Psicológico | Psyche</h2>
+        <p>Dar el primer paso para entender lo que sientes requiere valentía. Este test breve te ayudará a identificar posibles señales de malestar o sobrecarga emocional que podrías estar experimentando en este momento.</p>
       <ul>
         <li><strong>100% Anónimo y Confidencial:</strong> Tus respuestas son privadas. Ningún dato personal queda guardado en la plataforma.</li>
-        <li><strong>Uso opcional:</strong> Solo es necesario compartir tus resultados si deseas iniciar un proceso psicológico o agendar una sesión en Psyche; caso contrario, no es obligatorio.</li>
+        <li><strong>Uso opcional:</strong> Si decides iniciar un proceso psicológico o agendar una sesión en Psyche, puedes compartir tus resultados; caso contrario, no es necesario.</li>
         <li><strong>Duración estimada:</strong> 5 a 10 minutos.</li>
       </ul>
       <p style="font-size: 13px; color: #64748b; font-style: italic; margin-top: 10px;">Nota: Esta herramienta funciona como una guía de exploración inicial y no sustituye un diagnóstico clínico profesional.</p>
       <div style="margin-top: 25px; text-align: right;">
-        <button class="psyche-btn psyche-btn-primary" onclick="siguientePaso()">Iniciar test de bienestar</button>
+        <button class="psyche-btn psyche-btn-primary" onclick="siguientePaso()">Iniciar test de bienestar <i data-lucide="arrow-right" aria-hidden="true"></i></button>
+      </div>
       </div>
     `
   },
@@ -59,7 +63,7 @@ const testData = [
   },
   {
     title: "Sección 4",
-    subtitle: "En los últimos 3 meses (Área de comprobaciones y hábitos repetitivos)...",
+    subtitle: "En los últimos 3 meses ... ",
     areaName: "Trastorno Obsesivo-Compulsivo (TOC)",
     categoryKey: "toc",
     questions: [
@@ -138,7 +142,7 @@ const testData = [
   {
     title: "Sección 10",
     type: "checklist",
-    subtitle: "En los últimos 3 meses, ¿has consumido alguna de las siguientes sustancias? (Selecciona todas las que apliquen):",
+    subtitle: "En los últimos 3 meses, ¿has consumido de forma recurrente alguna de las siguientes sustancias? (Selecciona todas las que apliquen):",
     areaName: "Consumo de Sustancias",
     categoryKey: "sustancias",
     options: [
@@ -174,18 +178,42 @@ const testData = [
   {
     title: "Sección 13",
     type: "context",
-    subtitle: "Contexto y Antecedentes finales",
+    subtitle: "Malestar General y Factores Desencadenantes",
+    areaName: "Malestar General y Somático",
+    categoryKey: "sintomasSomaticos",
     questions: [
-      { id: "ctx1", text: "¿Buscas ayuda específica para algún problema emocional en este momento?" }
+      { id: "ctx1", text: "¿Buscas ayuda o acompañamiento psicológico para alguna situación específica en este momento?", symptom: "Búsqueda activa de acompañamiento psicológico." }
     ],
     checklists: [
       {
         id: "ctx2",
-        title: "Factores principales de estrés actual (Selecciona hasta 3):",
+        title: "En las últimas semanas, ¿has experimentado alguno de los siguientes malestares? (Selecciona los que apliquen):",
+        categoryKey: "sintomasSomaticos",
         options: [
-          "Relaciones interpersonales (pareja, familia, amigos)", "Presión laboral o académica", 
-          "Dificultades económicas", "Imagen corporal o autoestima", "Duelo o pérdidas recientes", 
-          "Experiencias de violencia o abuso", "Soledad o aislamiento", "Situación del entorno / Contexto global", "Incertidumbre general"
+          "Problemas de sueño (dificultad para conciliar el sueño, despertares nocturnos o insomnio)",
+          "Agotamiento emocional (sensación constante de drenaje o sobrecarga mental)",
+          "Somatizaciones (dolores físicos recurrentes sin causa médica clara, como tensión muscular o migrañas)",
+          "Dificultad para tomar decisiones (bloqueo o parálisis ante elecciones cotidianas)",
+          "Aislamiento voluntario (tendencia a retirarte o no querer saber de los demás)"
+        ]
+      },
+      {
+        id: "ctx3",
+        areaName: "Factores y Situaciones Vitales",
+        categoryKey: "factoresEstres",
+        title: "¿Estás atravesando o has vivido recientemente alguna de las siguientes situaciones? (Selecciona hasta 3):",
+        options: [
+          "Ruptura amorosa o separación",
+          "Infidelidad o conflicto grave de pareja",
+          "Conflictos familiares o relacionales",
+          "Duelo o pérdida reciente (fallecimiento, separación, cambio de vida)",
+          "Presión laboral, académica o agotamiento extremo (burnout)",
+          "Dificultades económicas o inestabilidad financiera",
+          "Baja autoestima o insatisfacción personal",
+          "Experiencias de violencia, abuso o acoso",
+          "Sensación de soledad profunda o falta de red de apoyo",
+          "Cambios importantes de vida (mudanza, migración, cambio de empleo, maternidad/paternidad)",
+          "Incertidumbre sobre el futuro o crisis existencial"
         ]
       }
     ]
@@ -194,28 +222,68 @@ const testData = [
 
 let pasoActual = 0;
 let respuestas = {};
+let modalLoadPromise = null;
+let elementoAnteriorAlModal = null;
 
-document.addEventListener("DOMContentLoaded", function () {
-  fetch("test-modal.html")
-    .then(response => response.text())
-    .then(data => {
-      document.body.insertAdjacentHTML('beforeend', data);
-    });
+function actualizarIconosTest() {
+  if (window.lucide) window.lucide.createIcons();
+}
+
+function cargarTestModal() {
+  if (!modalLoadPromise) {
+    modalLoadPromise = fetch(TEST_MODAL_URL)
+      .then(response => {
+        if (!response.ok) throw new Error(`No se pudo cargar test-modal.html (${response.status}).`);
+        return response.text();
+      })
+      .then(data => {
+        document.body.insertAdjacentHTML("beforeend", data);
+        actualizarIconosTest();
+      })
+      .catch(error => {
+        modalLoadPromise = null;
+        throw error;
+      });
+  }
+  return modalLoadPromise;
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  cargarTestModal().catch(error => console.error("Error al preparar el test de bienestar:", error));
 });
 
-function abrirTestModal() {
+document.addEventListener("keydown", event => {
+  if (event.key === "Escape" && document.getElementById("psycheTestModal")?.style.display === "flex") {
+    cerrarTestModal();
+  }
+});
+
+async function abrirTestModal() {
+  try {
+    await cargarTestModal();
+  } catch (error) {
+    console.error("No fue posible abrir el test de bienestar:", error);
+    window.alert("No se pudo cargar el test. Comprueba tu conexión e inténtalo de nuevo.");
+    return;
+  }
   const modal = document.getElementById("psycheTestModal");
   if(modal) {
+    elementoAnteriorAlModal = document.activeElement;
     modal.style.display = "flex";
+    document.body.style.overflow = "hidden";
     pasoActual = 0;
     respuestas = {};
     renderizarPaso();
+    document.querySelector(".psyche-modal-content")?.focus();
   }
 }
 
 function cerrarTestModal() {
   const modal = document.getElementById("psycheTestModal");
   if(modal) modal.style.display = "none";
+  document.body.style.overflow = "";
+  document.querySelectorAll(".psyche-crisis-overlay").forEach(overlay => overlay.remove());
+  if (elementoAnteriorAlModal instanceof HTMLElement) elementoAnteriorAlModal.focus();
 }
 
 function reiniciarTest() {
@@ -228,10 +296,14 @@ function reiniciarTest() {
 
 function actualizarBarraProgreso() {
   const fill = document.getElementById("psycheProgressFill");
-  if(fill) {
-    let porcentaje = (pasoActual / (testData.length - 1)) * 100;
-    fill.style.width = `${porcentaje}%`;
-  }
+  const bar = document.querySelector(".psyche-progress-bar");
+  const label = document.getElementById("psycheProgressLabel");
+  const percent = document.getElementById("psycheProgressPercent");
+  const porcentaje = Math.round((pasoActual / (testData.length - 1)) * 100);
+  if (fill) fill.style.width = `${porcentaje}%`;
+  if (bar) bar.setAttribute("aria-valuenow", String(porcentaje));
+  if (label) label.textContent = testData[pasoActual]?.title || "Resultados";
+  if (percent) percent.textContent = `${porcentaje}%`;
 }
 
 function siguientePaso() {
@@ -276,42 +348,78 @@ function seleccionarOpcion(id, valor, isCrisis, btnElement) {
 }
 
 function mostrarModalCrisis() {
+  if (document.querySelector(".psyche-crisis-overlay")) return;
   const container = document.getElementById("psycheTestContainer");
   const crisisDiv = document.createElement("div");
   crisisDiv.className = "psyche-crisis-overlay";
+  crisisDiv.setAttribute("role", "dialog");
+  crisisDiv.setAttribute("aria-modal", "true");
+  crisisDiv.setAttribute("aria-labelledby", "psycheCrisisTitle1");
+
   crisisDiv.innerHTML = `
-    <div>
-      <h2 style="color: #0d5c3f; margin-bottom: 15px;">💙 Tu bienestar es lo más importante</h2>
-      <p style="font-size: 15px; line-height: 1.6; margin-bottom: 20px; color: #334155;">
-        Notamos que estás atravesando un momento de mucho dolor. Recuerda que no tienes que llevar este peso a solas.<br><br>
-        Si sientes que estás en peligro o no puedes mantener tu seguridad en este momento, acude de inmediato al centro de salud u hospital más cercano de tu localidad o contacta a los servicios de emergencia de tu país.
+    <div id="psycheCrisisCard1" class="psyche-crisis-card" style="text-align: left;" tabindex="-1">
+      <h2 id="psycheCrisisTitle1" style="color: #0d5c3f; margin-bottom: 15px; text-align: center;">💙 Tu bienestar es lo más importante</h2>
+      <p style="font-size: 15px; line-height: 1.6; margin-bottom: 25px; color: #334155;">
+        Notamos que estás atravesando un momento de mucho dolor. Tus vivencias son válidas y merecen ser escuchadas en un espacio seguro. Recuerda que no tienes que llevar este peso a solas.<br><br>
+        <strong>Si en este momento sientes que estás en peligro o te cuesta mantener tu seguridad, por favor acude de inmediato al centro de salud u hospital más cercano o contacta a los servicios de emergencia de tu localidad.</strong>
       </p>
-      <button class="psyche-btn psyche-btn-primary" onclick="this.parentElement.parentElement.remove()">Entendido, deseo continuar</button>
+      <div style="text-align: center;">
+        <button class="psyche-btn psyche-btn-primary" onclick="mostrarTarjetaReflexionCrisis()">
+          Entendido
+        </button>
+      </div>
+    </div>
+
+    <div id="psycheCrisisCard2" class="psyche-crisis-card" style="display: none; text-align: left;" tabindex="-1">
+      <h2 id="psycheCrisisTitle2" style="color: #0d5c3f; margin-bottom: 15px; text-align: center;">💚 Lo que sientes hoy no tiene que ser para siempre.</h2>
+      <p style="font-size: 15px; line-height: 1.6; margin-bottom: 20px; color: #334155;">
+        Sabemos que llegar a este punto muchas veces no es solo cuestión de sentir tristeza o miedo, sino de estar profundamente agotado/a de intentar sostenerlo todo por tu cuenta. Ese cansancio es real y no tienes que justificarlo.<br><br>
+
+        Cuando el dolor es inmenso, la mente suele buscar culpables adentro y afuera: es muy fácil llegar a creer que el problema eres tú, que estás roto/a, que no mereces estar bien, o que el mundo entero está mal y siempre lo estará. Pero <strong>esas ideas no son certezas; son los lentes oscuros que el sufrimiento nos pone en los ojos</strong>. No estás fallado/a, y el dolor no define tu valor ni lo que te pertenece.<br><br>
+
+        Aunque hoy el futuro se sienta pesado y oscuro, <strong>mereces un espacio para sanar y mereces un futuro mejor, aunque ahora mismo te cueste imaginarlo o creas que no es para ti</strong>. La forma en que te sientes no es permanente; con el acompañamiento adecuado, el peso se aligera y es completamente posible volver a experimentar alivio.<br><br>
+
+        Permitirte recibir apoyo no es rendirse; es darle a tu mente la oportunidad de dejar de luchar a solas y abrir espacio a una realidad distinta.
+      </p>
+      <div style="text-align: center; margin-top: 25px;">
+        <button class="psyche-btn psyche-btn-primary" onclick="this.closest('.psyche-crisis-overlay').remove()">
+          <i data-lucide="heart-handshake" aria-hidden="true"></i> Entendido, deseo continuar el test
+        </button>
+      </div>
     </div>
   `;
-  container.appendChild(crisisDiv);
+
+  document.body.appendChild(crisisDiv);
+  actualizarIconosTest();
+  document.getElementById("psycheCrisisCard1")?.focus();
 }
 
-function actualizarChecklist(categoria, checkbox) {
-  if(!respuestas[categoria]) respuestas[categoria] = [];
-  if(checkbox.checked) {
-    respuestas[categoria].push(checkbox.value);
-  } else {
-    respuestas[categoria] = respuestas[categoria].filter(item => item !== checkbox.value);
+// Función auxiliar para pasar de la Tarjeta 1 a la Tarjeta 2
+function mostrarTarjetaReflexionCrisis() {
+  const card1 = document.getElementById("psycheCrisisCard1");
+  const card2 = document.getElementById("psycheCrisisCard2");
+  if (card1 && card2) {
+    card1.style.display = "none";
+    card2.style.display = "block";
+    const crisisOverlay = document.querySelector(".psyche-crisis-overlay");
+    if (crisisOverlay) crisisOverlay.setAttribute("aria-labelledby", "psycheCrisisTitle2");
+    card2.scrollTop = 0;
   }
 }
 
 function renderizarPaso() {
+  document.querySelector(".psyche-modal-content")?.classList.remove("is-results");
   actualizarBarraProgreso();
   const container = document.getElementById("psycheTestContainer");
   const bloque = testData[pasoActual];
 
   if(bloque.type === "welcome") {
     container.innerHTML = bloque.content;
+    actualizarIconosTest();
     return;
   }
 
-  let html = `<h2>${bloque.title}</h2><p style="margin-bottom: 20px;">${bloque.subtitle || ''}</p>`;
+  let html = `<h2 class="psyche-step-title"><i data-lucide="sparkles" aria-hidden="true"></i>${bloque.title}</h2><p style="margin-bottom: 20px;">${bloque.subtitle || ''}</p>`;
 
   if(bloque.questions && !bloque.type) {
     bloque.questions.forEach((q, idx) => {
@@ -355,10 +463,10 @@ function renderizarPaso() {
     bloque.checklists.forEach(ch => {
       html += `<p style="font-weight:600; margin-top:20px; margin-bottom:10px; color:#1e293b;">${ch.title}</p><div class="psyche-checkbox-group">`;
       ch.options.forEach(opt => {
-        let checked = (respuestas['factoresEstres'] && respuestas['factoresEstres'].includes(opt)) ? "checked" : "";
+        let checked = (respuestas[ch.categoryKey] && respuestas[ch.categoryKey].includes(opt)) ? "checked" : "";
         html += `
           <label class="psyche-checkbox-label">
-            <input type="checkbox" value="${opt}" ${checked} onchange="actualizarChecklist('factoresEstres', this)" style="accent-color: #0d5c3f; width: 18px; height: 18px;">
+            <input type="checkbox" value="${opt}" ${checked} onchange="actualizarChecklist('${ch.categoryKey}', this)" style="accent-color: #0d5c3f; width: 18px; height: 18px;">
             ${opt}
           </label>
         `;
@@ -369,142 +477,156 @@ function renderizarPaso() {
 
   html += `
     <div class="psyche-nav-buttons">
-      <button class="psyche-btn psyche-btn-secondary" onclick="pasoAnterior()">Anterior</button>
-      <button class="psyche-btn psyche-btn-primary" onclick="siguientePaso()">Siguiente</button>
+      <button type="button" class="psyche-nav-back" onclick="pasoAnterior()" aria-label="Volver a la sección anterior" title="Volver">
+        <i data-lucide="arrow-left" aria-hidden="true"></i><span>Anterior</span>
+      </button>
+      <button class="psyche-btn psyche-btn-primary" onclick="siguientePaso()">Siguiente <i data-lucide="arrow-right" aria-hidden="true"></i></button>
     </div>
   `;
   container.innerHTML = html;
+  actualizarIconosTest();
+}
+
+function actualizarChecklist(categoryKey, input) {
+  const group = input.closest(".psyche-checkbox-group");
+  if (!group) return;
+  const noneOption = "Ninguna de las anteriores";
+  const selectedInputs = [...group.querySelectorAll('input[type="checkbox"]:checked')];
+
+  if (input.checked && input.value === noneOption) {
+    selectedInputs.forEach(option => {
+      if (option !== input) option.checked = false;
+    });
+  } else if (input.checked) {
+    const noneInput = [...group.querySelectorAll('input[type="checkbox"]')].find(option => option.value === noneOption);
+    if (noneInput) noneInput.checked = false;
+    if (categoryKey === "factoresEstres" && selectedInputs.length > 3) {
+      input.checked = false;
+      window.alert("Puedes seleccionar hasta 3 situaciones.");
+    }
+  }
+
+  respuestas[categoryKey] = [...group.querySelectorAll('input[type="checkbox"]:checked')].map(option => option.value);
+}
+
+function volverAResultadosAnterior() {
+  pasoActual = testData.length - 1;
+  renderizarPaso();
+  const modalContent = document.querySelector(".psyche-modal-content");
+  if (modalContent) modalContent.scrollTop = 0;
+}
+
+function etiquetaBreve(texto) {
+  return texto.split(" (")[0];
 }
 
 function renderizarResultados() {
   const container = document.getElementById("psycheTestContainer");
-  const fill = document.getElementById("psycheProgressFill");
-  if(fill) fill.style.width = "100%";
-
-  // Cálculo estricto de ítems afirmativos en áreas clínicas (excluyendo pregunta de ayuda general de contexto)
-  let areasDetectadas = [];
-  let totalSiAreas = 0;
-
-  testData.forEach(bloque => {
-    if (bloque.questions && bloque.areaName) {
-      let totalPreguntasArea = bloque.questions.length;
-      let sintomasSi = [];
-      let countSi = 0;
-
-      bloque.questions.forEach(q => {
-        // Excluir ctx1 (¿Buscas ayuda específica...) ya que no es un síntoma clínico estricto
-        if (q.id !== "ctx1" && respuestas[q.id] === "Sí") {
-          countSi++;
-          totalSiAreas++;
-          sintomasSi.push(q.symptom || q.text);
-        }
-      });
-
-      if (countSi > 0) {
-        areasDetectadas.push({
-          areaName: bloque.areaName,
-          score: `${countSi}/${totalPreguntasArea}`,
-          symptoms: sintomasSi
-        });
-      }
-    } else if (bloque.type === "checklist" && bloque.areaName) {
-      let key = bloque.categoryKey;
-      if (respuestas[key] && respuestas[key].length > 0) {
-        let validItems = respuestas[key].filter(item => item !== "Ninguna de las anteriores");
-        if (validItems.length > 0) {
-          totalSiAreas += validItems.length;
-          areasDetectadas.push({
-            areaName: bloque.areaName,
-            score: `${validItems.length} selección(es)`,
-            symptoms: validItems
-          });
-        }
-      }
-    }
-  });
-
-  // Si no hay ningún ítem afirmativo en áreas clínicas
-  if (totalSiAreas === 0) {
-    let mensajeCompartir = `¡Hola! 👋 He realizado el test de bienestar Psyche y me gustaría agendar una sesión psicológica para hablar sobre lo que estoy viviendo y recibir orientación. 💚`;
-    container.innerHTML = `
-      <h2>Tu bienestar merece atención</h2>
-      <p>Aunque no marcaste respuestas afirmativas directas en las preguntas específicas de este test, <strong>el simple hecho de haberlo iniciado demuestra que hay algo en tu vida a lo que deseas prestarle atención</strong>.</p>
-      <p>Recuerda que este test es completamente confidencial y anónimo. Si deseas dar el siguiente paso en tu proceso de autocuidado y salud mental con nosotros, puedes agendar una sesión a continuación:</p>
-      
-      <div class="psyche-action-container">
-        <a href="${LINK_WHATSAPP_AGENDA}" target="_blank" class="psyche-action-btn psyche-whatsapp-btn">
-          💬 Agendar sesión por WhatsApp
-        </a>
-        <a href="${LINK_CALENDAR}" target="_blank" class="psyche-action-btn psyche-calendar-btn">
-          📅 Ver disponibilidad y agendar
-        </a>
-        <button class="psyche-btn psyche-btn-secondary" onclick="reiniciarTest()" style="margin-top: 10px; width: 100%; padding: 12px; font-weight: 600; border-radius: 10px;">
-          🔄 Reiniciar test
-        </button>
-      </div>
-    `;
-  } else {
-    // Si hay áreas detectadas con síntomas
-    let detalleWhatsAppParaCopiar = `¡Hola! 👋 He realizado el test de bienestar Psyche de forma 100% anónima. Estos son mis resultados detallados:\n\nSe registraron respuestas afirmativas en ${totalSiAreas} ítems.\n`;
-    
-    areasDetectadas.forEach(area => {
-      detalleWhatsAppParaCopiar += `\n• ${area.areaName} (${area.score}):\n`;
-      area.symptoms.forEach(sym => {
-        detalleWhatsAppParaCopiar += `  - ${sym}\n`;
-      });
-    });
-
-    detalleWhatsAppParaCopiar += `\nMe gustaría agendar una sesión psicológica para hablar sobre lo que estoy viviendo y recibir orientación. 💚`;
-    let urlWhatsAppResultados = `https://api.whatsapp.com/send?phone=${WHATSAPP_CLINICA}&text=${encodeURIComponent(detalleWhatsAppParaCopiar)}`;
-
-    let htmlResultados = `
-      <h2>Tu mapa de exploración emocional</h2>
-      <p>Gracias por completar el test de forma 100% anónima y confidencial. Has dado un paso muy importante al mirar hacia adentro.</p>
-      
-      <p><strong>Se registraron respuestas afirmativas en ${totalSiAreas} ítems.</strong> Encontramos señales que podrían estar afectando tu bienestar actual y que están vinculadas a las siguientes áreas:</p>
-    `;
-
-    areasDetectadas.forEach(area => {
-      htmlResultados += `
-        <div style="background: rgba(39, 174, 96, 0.05); border-left: 4px solid var(--psyche-accent); padding: 12px 16px; margin: 15px 0; border-radius: 0 8px 8px 0;">
-          <p style="margin: 0 0 5px 0; font-weight: 700; color: var(--psyche-primary);">${area.areaName} (${area.score}):</p>
-          <p style="margin: 0; font-size: 14px; color: #334155;"><strong>Síntomas reportados:</strong> ${area.symptoms.join(', ')}.</p>
-        </div>
-      `;
-    });
-
-    htmlResultados += `
-      <p style="font-size: 13px; color: #64748b; font-style: italic; margin-top: 15px;">
-        <strong>Aviso:</strong> Este resumen es una guía orientativa para tu autoconocimiento, muestran síntomas que podrías estar experimentando y no constituye un diagnóstico clínico.
-      </p>
-
-      <h3 style="margin-top: 25px; color: var(--psyche-primary); font-size: 18px;">Próximos pasos</h3>
-      <p>Considera compartir estos resultados con alguien de confianza: un familiar, un amigo o cualquier otra persona que te brinde apoyo. Esta evaluación te ofrece una idea general de lo que podría estar sucediendo. Para profundizar en alguno de estos temas, puedes buscar ayuda profesional o agenda una sesión psicológica con nosotros.</p>
-
-      <div style="background: rgba(13, 92, 63, 0.06); padding: 14px 16px; border-radius: 10px; margin: 20px 0; font-size: 14px; color: #1e293b;">
-        <p style="margin: 0;"><strong>Nota:</strong> Recuerda que puedes compartir tus resultados con nosotros si has decidido iniciar un proceso psicológico, lo analizaremos en la primera sesión; caso contrario, no es obligatorio.</p>
-      </div>
-
-      <p style="font-weight: 600; text-align: center; margin: 20px 0 10px 0; color: var(--psyche-primary);">
-        Los trastornos de salud mental son reales y comunes. ¡Y la recuperación es posible! Da los primeros pasos aquí.
-      </p>
-
-      <div class="psyche-action-container">
-        <a href="${LINK_WHATSAPP_AGENDA}" target="_blank" class="psyche-action-btn psyche-whatsapp-btn">
-          💬 Agendar sesión por WhatsApp
-        </a>
-        <a href="${LINK_CALENDAR}" target="_blank" class="psyche-action-btn psyche-calendar-btn">
-          📅 Ver disponibilidad y agendar (Calendario)
-        </a>
-        <a href="${urlWhatsAppResultados}" target="_blank" class="psyche-action-btn psyche-whatsapp-share-btn">
-          📤 Compartir mis resultados detallados por WhatsApp
-        </a>
-        <button class="psyche-btn psyche-btn-secondary" onclick="reiniciarTest()" style="margin-top: 5px; width: 100%; padding: 12px; font-weight: 600; border-radius: 10px;">
-          🔄 Reiniciar test
-        </button>
-      </div>
-    `;
-
-    container.innerHTML = htmlResultados;
+  const modalContent = document.querySelector(".psyche-modal-content");
+  modalContent?.classList.add("is-results");
+  const progressLabel = document.getElementById("psycheProgressLabel");
+  if (progressLabel) {
+    progressLabel.innerHTML = '<span class="psyche-results-label-main">RESULTADOS</span><span class="psyche-results-label-sub">Test de bienestar | Psyche</span>';
   }
+
+  const secciones = testData.filter(bloque => /^Sección (?:[1-9]|1[0-2])$/.test(bloque.title));
+  const resultadosSecciones = secciones.map(bloque => {
+    let positivos = [];
+    if (bloque.questions) {
+      positivos = bloque.questions
+        .filter(question => respuestas[question.id] === "Sí")
+        .map(question => question.symptom || question.text);
+    } else if (bloque.type === "checklist") {
+      positivos = (respuestas[bloque.categoryKey] || []).filter(item => item !== "Ninguna de las anteriores");
+    }
+    const total = bloque.questions?.length ??
+      bloque.options.filter(option => option !== "Ninguna de las anteriores").length;
+    const nombreReporte = bloque.areaName.replace(" (Atención e Hiperactividad)", "");
+    return { nombre: bloque.areaName, nombreReporte, titulo: bloque.title, positivos, total };
+  }).filter(seccion => seccion.positivos.length > 0);
+  const ctx1Positivo = respuestas.ctx1 === "Sí";
+  const factores = (respuestas.sintomasSomaticos || [])
+    .concat(respuestas.factoresEstres || [])
+    .filter(item => item !== "Ninguna de las anteriores")
+    .map(etiquetaBreve);
+  const totalPositivos = resultadosSecciones.reduce((total, seccion) => total + seccion.positivos.length, 0) +
+    factores.length + (ctx1Positivo ? 1 : 0);
+
+  const resumenSecciones = resultadosSecciones.map(seccion => {
+    const items = seccion.positivos.map(item => `  - ${item}`).join("\n");
+    return `· ${seccion.nombreReporte}: ${seccion.positivos.length}/${seccion.total}\n${items}`;
+  }).join("\n\n");
+  const resumenCtx1 = `> Iniciativa y Búsqueda de Bienestar: ${ctx1Positivo ? "Sí" : "No"}`;
+  const resumenFactores = factores.map(item => `  - ${item}`).join("\n");
+  const totalFactores = testData.filter(bloque => bloque.type === "context")
+    .flatMap(bloque => bloque.checklists || [])
+    .reduce((total, checklist) => total + checklist.options.filter(option => option !== "Ninguna de las anteriores").length, 0);
+  const detalleWhatsApp = [
+    "¡Hola! He realizado el Test de Bienestar Psyche. Estos son mis resultados:",
+    ...(resumenSecciones ? [`\nSÍNTOMAS ENCONTRADOS\n${resumenSecciones}`] : []),
+    `\n${resumenCtx1}`,
+    ...(factores.length ? [`\nFACTORES GENERALES CLÍNICAMENTE RELEVANTES ENCONTRADOS: ${factores.length}/${totalFactores}\n${resumenFactores}`] : []),
+    "\nMe gustaría agendar una sesión psicológica para hablar sobre lo que estoy viviendo y recibir orientación."
+  ].join("\n");
+  const urlWhatsAppResultados = `https://api.whatsapp.com/send?phone=${WHATSAPP_CLINICA}&text=${encodeURIComponent(detalleWhatsApp)}`;
+
+  const seccionesHtml = resultadosSecciones.map(seccion => `
+    <div class="psyche-result-section">
+      <p><strong>${seccion.titulo} · ${seccion.nombre}</strong></p>
+      <ul>${seccion.positivos.map(item => `<li>${item}</li>`).join("")}</ul>
+    </div>
+  `).join("");
+  const factoresHtml = factores.length
+    ? `<ul>${factores.map(item => `<li>${item}</li>`).join("")}</ul>`
+    : "";
+  const ctx1Status = ctx1Positivo
+    ? '<span class="psyche-context-status is-positive" role="img" aria-label="Sí" title="Sí"><i data-lucide="circle-check" aria-hidden="true"></i></span>'
+    : '<span class="psyche-context-status is-negative" role="img" aria-label="No" title="No"><i data-lucide="circle-x" aria-hidden="true"></i></span>';
+
+  container.innerHTML = `
+    <div class="psyche-results-content">
+      <img class="psyche-brand-mark" src="logo1.png" alt="Psyche">
+      <h2>Panorama de tu bienestar</h2>
+      <p>Gracias por completar esta exploración inicial. Las respuestas resumen aspectos que podrían ser importantes para tu bienestar y no constituyen un diagnóstico clínico.</p>
+      <p><strong>Se registraron ${totalPositivos} respuestas afirmativas.</strong> Puedes revisar el detalle y compartirlo si lo deseas.</p>
+
+      <div class="psyche-results-cards">
+        ${resultadosSecciones.length ? `<section class="psyche-result-card">
+          <h3><i data-lucide="clipboard-list" aria-hidden="true"></i> Síntomas encontrados</h3>
+          ${seccionesHtml}
+        </section>` : ""}
+        <section class="psyche-result-card">
+          <div class="psyche-context-result"><strong>Búsqueda de Bienestar</strong>${ctx1Status}</div>
+        </section>
+        ${factores.length ? `<section class="psyche-result-card">
+          <h3><i data-lucide="scan-heart" aria-hidden="true"></i> Factores generales clínicamente relevantes encontrados:</h3>
+          ${factoresHtml}
+        </section>` : ""}
+      </div>
+
+      <p class="psyche-disclaimer"><strong>Importante:</strong> esta herramienta es orientativa y no reemplaza una evaluación ni un diagnóstico profesional.</p>
+      <h3 class="psyche-next-title">Próximos pasos</h3>
+      <p class="psyche-results-next">Considera conversar sobre lo que estás viviendo con alguien de confianza o con un profesional. Si lo deseas, puedes agendar una sesión para explorar tus resultados.</p>
+      <div class="psyche-action-container">
+        <a href="${LINK_WHATSAPP_AGENDA}" target="_blank" rel="noopener noreferrer" class="psyche-action-btn psyche-whatsapp-btn">
+          <i data-lucide="message-circle" aria-hidden="true"></i> Agendar sesión
+        </a>
+        <a href="${LINK_CALENDAR}" target="_blank" rel="noopener noreferrer" class="psyche-action-btn psyche-calendar-btn">
+          <i data-lucide="calendar-days" aria-hidden="true"></i> Ver horarios disponibles
+        </a>
+        <a href="${urlWhatsAppResultados}" target="_blank" rel="noopener noreferrer" class="psyche-action-btn psyche-whatsapp-share-btn psyche-action-btn-share">
+          <i data-lucide="share-2" aria-hidden="true"></i> Compartir resultados por WhatsApp
+        </a>
+      </div>
+      <div class="psyche-nav-buttons psyche-results-controls">
+        <button type="button" class="psyche-nav-back" onclick="volverAResultadosAnterior()" aria-label="Volver y modificar respuestas" title="Volver y modificar respuestas">
+          <i data-lucide="arrow-left" aria-hidden="true"></i>
+        </button>
+        <button type="button" class="psyche-reset-link" onclick="reiniciarTest()" aria-label="Reiniciar test">
+          <i data-lucide="rotate-ccw" aria-hidden="true"></i><span>Reiniciar</span>
+        </button>
+      </div>
+    </div>
+  `;
+  actualizarIconosTest();
 }

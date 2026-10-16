@@ -501,6 +501,21 @@ h2 {
     color: var(--primary-color);
 }
 
+.areas-footer-card .test-invitation {
+    max-width: 760px;
+    margin: 18px auto 0;
+    padding: 16px 20px;
+    border: 1px solid rgba(76, 136, 124, 0.2);
+    border-left: 4px solid var(--primary-color);
+    border-radius: var(--radius-md);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.86), rgba(228, 244, 238, 0.72));
+    box-shadow: 0 8px 22px rgba(35, 91, 77, 0.08);
+}
+
+.areas-footer-card .test-invitation strong {
+    color: var(--heading-color);
+}
+
 .area-test-button {
     display: inline-flex;
     align-items: center;
@@ -514,7 +529,10 @@ h2 {
     box-shadow: 0 6px 18px var(--shadow-medium);
     color: var(--primary-color);
     font-weight: 700;
+    font-family: inherit;
+    font-size: inherit;
     text-decoration: none;
+    cursor: pointer;
     transition: var(--transition-smooth);
 }
 
