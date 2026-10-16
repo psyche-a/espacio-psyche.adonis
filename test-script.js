@@ -15,10 +15,10 @@ const testData = [
         <img class="psyche-brand-mark" src="logo1.png" alt="Psyche">
         <h2>Test de Bienestar Psicológico | Psyche</h2>
         <p>Dar el primer paso para entender lo que sientes requiere valentía. Este test breve te ayudará a identificar posibles señales de malestar o sobrecarga emocional que podrías estar experimentando en este momento.</p>
-      <ul>
-        <li><strong>100% Anónimo y Confidencial:</strong> Tus respuestas son privadas. Ningún dato personal queda guardado en la plataforma.</li>
-        <li><strong>Uso opcional:</strong> Si decides iniciar un proceso psicológico o agendar una sesión en Psyche, puedes compartir tus resultados; caso contrario, no es necesario.</li>
-        <li><strong>Duración estimada:</strong> 5 a 10 minutos.</li>
+      <ul class="psyche-welcome-benefits">
+        <li><i data-lucide="shield-check" aria-hidden="true"></i><span><strong>100% Anónimo y Confidencial:</strong> Tus respuestas son privadas. Ningún dato personal queda guardado en la plataforma.</span></li>
+        <li><i data-lucide="heart-handshake" aria-hidden="true"></i><span><strong>Uso opcional:</strong> Si decides iniciar un proceso psicológico o agendar una sesión en Psyche, puedes compartir tus resultados; caso contrario, no es necesario.</span></li>
+        <li><i data-lucide="clock-3" aria-hidden="true"></i><span><strong>Duración estimada:</strong> 5 a 10 minutos.</span></li>
       </ul>
       <p style="font-size: 13px; color: #64748b; font-style: italic; margin-top: 10px;">Nota: Esta herramienta funciona como una guía de exploración inicial y no sustituye un diagnóstico clínico profesional.</p>
       <div style="margin-top: 25px; text-align: right;">
@@ -302,7 +302,16 @@ function actualizarBarraProgreso() {
   const porcentaje = Math.round((pasoActual / (testData.length - 1)) * 100);
   if (fill) fill.style.width = `${porcentaje}%`;
   if (bar) bar.setAttribute("aria-valuenow", String(porcentaje));
-  if (label) label.textContent = testData[pasoActual]?.title || "Resultados";
+  if (label) {
+    const totalSecciones = testData.filter(bloque => /^Sección \d+$/.test(bloque.title)).length;
+    if (pasoActual > 0 && pasoActual < testData.length) {
+      const seccionActual = Math.min(pasoActual, totalSecciones);
+      const seccionesRestantes = totalSecciones - seccionActual;
+      label.innerHTML = `<span class="psyche-section-progress-current">Sección ${seccionActual}/${totalSecciones}</span><span class="psyche-section-progress-remaining">${seccionesRestantes ? `Te faltan ${seccionesRestantes} ${seccionesRestantes === 1 ? "sección" : "secciones"}` : "Última sección"}</span>`;
+    } else {
+      label.textContent = testData[pasoActual]?.title || "Resultados";
+    }
+  }
   if (percent) percent.textContent = `${porcentaje}%`;
 }
 
@@ -349,7 +358,6 @@ function seleccionarOpcion(id, valor, isCrisis, btnElement) {
 
 function mostrarModalCrisis() {
   if (document.querySelector(".psyche-crisis-overlay")) return;
-  const container = document.getElementById("psycheTestContainer");
   const crisisDiv = document.createElement("div");
   crisisDiv.className = "psyche-crisis-overlay";
   crisisDiv.setAttribute("role", "dialog");
@@ -370,17 +378,21 @@ function mostrarModalCrisis() {
       </div>
     </div>
 
-    <div id="psycheCrisisCard2" class="psyche-crisis-card" style="display: none; text-align: left;" tabindex="-1">
-      <h2 id="psycheCrisisTitle2" style="color: #0d5c3f; margin-bottom: 15px; text-align: center;">💚 Lo que sientes hoy no tiene que ser para siempre.</h2>
-      <p style="font-size: 15px; line-height: 1.6; margin-bottom: 20px; color: #334155;">
-        Sabemos que llegar a este punto muchas veces no es solo cuestión de sentir tristeza o miedo, sino de estar profundamente agotado/a de intentar sostenerlo todo por tu cuenta. Ese cansancio es real y no tienes que justificarlo.<br><br>
-
-        Cuando el dolor es inmenso, la mente suele buscar culpables adentro y afuera: es muy fácil llegar a creer que el problema eres tú, que estás roto/a, que no mereces estar bien, o que el mundo entero está mal y siempre lo estará. Pero <strong>esas ideas no son certezas; son los lentes oscuros que el sufrimiento nos pone en los ojos</strong>. No estás fallado/a, y el dolor no define tu valor ni lo que te pertenece.<br><br>
-
-        Aunque hoy el futuro se sienta pesado y oscuro, <strong>mereces un espacio para sanar y mereces un futuro mejor, aunque ahora mismo te cueste imaginarlo o creas que no es para ti</strong>. La forma en que te sientes no es permanente; con el acompañamiento adecuado, el peso se aligera y es completamente posible volver a experimentar alivio.<br><br>
-
-        Permitirte recibir apoyo no es rendirse; es darle a tu mente la oportunidad de dejar de luchar a solas y abrir espacio a una realidad distinta.
-      </p>
+    <div id="psycheCrisisCard2" class="psyche-crisis-card psyche-crisis-card-reflection" style="display: none; text-align: left;" tabindex="-1">
+      <button type="button" class="psyche-crisis-return" onclick="this.closest('.psyche-crisis-overlay').remove()">
+        <i data-lucide="arrow-left" aria-hidden="true"></i> Volver al test
+      </button>
+      <div class="psyche-crisis-reflection-heading">
+        <span class="psyche-crisis-icon"><i data-lucide="heart-handshake" aria-hidden="true"></i></span>
+        <h2 id="psycheCrisisTitle2">Lo que sientes hoy no tiene que ser para siempre.</h2>
+      </div>
+      <p class="psyche-crisis-intro">No tienes que sostenerlo todo por tu cuenta. Lo que estás sintiendo merece ser escuchado con cuidado y sin juicios.</p>
+      <div class="psyche-crisis-reflection-copy">
+        <p>Sabemos que llegar a este punto muchas veces no es solo cuestión de sentir tristeza o miedo, sino de estar profundamente agotado/a de intentar sostenerlo todo por tu cuenta. <strong>Ese cansancio es real y no tienes que justificarlo.</strong></p>
+        <p>Cuando el dolor es inmenso, la mente puede hacerte creer que el problema eres tú o que nada va a cambiar. <strong>Esas ideas no son certezas:</strong> pueden aparecer en momentos de mucho sufrimiento. No hay algo malo contigo, y el dolor no define tu valor.</p>
+        <p>Aunque hoy el futuro se sienta pesado y oscuro, <strong>mereces un espacio para sanar y un futuro mejor</strong>, aunque ahora mismo te cueste imaginarlo. Con el acompañamiento adecuado, el peso puede aligerarse y es posible volver a experimentar alivio.</p>
+        <p>Permitirte recibir apoyo no es rendirse; es darte la oportunidad de dejar de luchar a solas y abrir espacio a una realidad distinta.</p>
+      </div>
       <div style="text-align: center; margin-top: 25px;">
         <button class="psyche-btn psyche-btn-primary" onclick="this.closest('.psyche-crisis-overlay').remove()">
           <i data-lucide="heart-handshake" aria-hidden="true"></i> Entendido, deseo continuar el test
@@ -572,8 +584,8 @@ function renderizarResultados() {
 
   const seccionesHtml = resultadosSecciones.map(seccion => `
     <div class="psyche-result-section">
-      <p><strong>${seccion.titulo} · ${seccion.nombre}</strong></p>
-      <ul>${seccion.positivos.map(item => `<li>${item}</li>`).join("")}</ul>
+      <p class="psyche-result-section-title"><i data-lucide="circle-dot" aria-hidden="true"></i><strong>${seccion.nombre}</strong></p>
+      <ul class="psyche-result-symptoms">${seccion.positivos.map(item => `<li>${item}</li>`).join("")}</ul>
     </div>
   `).join("");
   const factoresHtml = factores.length
@@ -596,7 +608,7 @@ function renderizarResultados() {
           ${seccionesHtml}
         </section>` : ""}
         <section class="psyche-result-card">
-          <div class="psyche-context-result"><strong>Búsqueda de Bienestar</strong>${ctx1Status}</div>
+          <div class="psyche-context-result"><span class="psyche-context-title"><i data-lucide="heart" aria-hidden="true"></i><strong>Búsqueda de Bienestar</strong></span>${ctx1Status}</div>
         </section>
         ${factores.length ? `<section class="psyche-result-card">
           <h3><i data-lucide="scan-heart" aria-hidden="true"></i> Factores generales clínicamente relevantes encontrados:</h3>
@@ -604,8 +616,8 @@ function renderizarResultados() {
         </section>` : ""}
       </div>
 
-      <p class="psyche-disclaimer"><strong>Importante:</strong> esta herramienta es orientativa y no reemplaza una evaluación ni un diagnóstico profesional.</p>
-      <h3 class="psyche-next-title">Próximos pasos</h3>
+      <p class="psyche-disclaimer"><i data-lucide="info" aria-hidden="true"></i><span><strong>Importante:</strong> esta herramienta es orientativa y no reemplaza una evaluación ni un diagnóstico profesional.</span></p>
+      <h3 class="psyche-next-title"><i data-lucide="footprints" aria-hidden="true"></i> Próximos pasos</h3>
       <p class="psyche-results-next">Considera conversar sobre lo que estás viviendo con alguien de confianza o con un profesional. Si lo deseas, puedes agendar una sesión para explorar tus resultados.</p>
       <div class="psyche-action-container">
         <a href="${LINK_WHATSAPP_AGENDA}" target="_blank" rel="noopener noreferrer" class="psyche-action-btn psyche-whatsapp-btn">

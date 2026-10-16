@@ -59,7 +59,10 @@
     -webkit-backdrop-filter: blur(16px);
   }
   .psyche-modal-content.is-results .psyche-test-header {
-    grid-template-columns: 78px minmax(0, 1fr) 42px;
+    grid-template-columns: 78px minmax(0, 1fr) 78px;
+    min-height: 104px;
+    padding-top: 22px;
+    padding-bottom: 22px;
   }
   .psyche-modal-content.is-results #psycheProgressPercent,
   .psyche-modal-content.is-results .psyche-progress-bar { display: none; }
@@ -69,69 +72,89 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    width: 100%;
     margin: 0;
     color: #365f53;
-    gap: 4px;
+    gap: 10px;
     text-align: center;
   }
+  .psyche-section-progress-current { color: #285d4b; font-size: 12px; font-weight: 750; }
+  .psyche-section-progress-remaining { color: #6b8179; font-size: 11px; font-weight: 550; }
   .psyche-results-label-main {
+    display: block;
+    width: 100%;
     font-size: 12px;
     font-weight: 750;
     letter-spacing: .13em;
     line-height: 1.2;
+    text-align: center;
   }
   .psyche-results-label-sub {
-    display: inline-block;
-    padding: 4px 11px;
+    display: block;
+    width: max-content;
+    max-width: 100%;
+    padding: 7px 16px;
     border: 1px solid rgba(49, 126, 91, .2);
     border-radius: 999px;
     background: linear-gradient(135deg, rgba(236, 248, 241, .9), rgba(221, 241, 229, .72));
     color: #285d4b;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 700;
     line-height: 1.2;
+    text-align: center;
   }
+  .psyche-modal-content.is-results .psyche-close-btn { justify-self: end; }
   .psyche-header-logo {
     display: block;
     width: 78px;
     max-height: 54px;
     object-fit: contain;
   }
-  .psyche-progress-wrap { position: relative; min-width: 0; height: 54px; }
+  .psyche-progress-wrap { display: grid; grid-template-rows: auto 10px; align-content: center; gap: 10px; min-width: 0; min-height: 54px; }
   .psyche-progress-meta {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
     display: flex;
+    align-items: center;
     justify-content: space-between;
     gap: 12px;
-    margin-bottom: 7px;
+    min-height: 34px;
+    margin: 0;
     color: #526b63;
     font-size: 12px;
     font-weight: 650;
   }
+  #psycheProgressLabel { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; }
   .psyche-progress-bar {
-    position: absolute;
-    top: 50%;
-    left: 0;
+    position: relative;
     width: 100%;
-    height: 9px;
+    height: 10px;
     margin: 0;
-    transform: translateY(-50%);
-    background: rgba(13, 92, 63, 0.12);
-    border: 1px solid rgba(13, 92, 63, 0.1);
+    background: linear-gradient(180deg, rgba(217, 234, 226, .9), rgba(232, 243, 237, .9));
+    border: 1px solid rgba(76, 136, 124, 0.2);
     border-radius: 999px;
     overflow: hidden;
-    box-shadow: inset 0 1px 3px rgba(7, 54, 36, 0.08);
+    box-shadow: inset 0 1px 3px rgba(7, 54, 36, 0.1), 0 2px 6px rgba(19, 82, 57, 0.06);
   }
   .psyche-progress-fill {
     height: 100%;
-    background: linear-gradient(90deg, #4c887c, #27ae60 70%, #73c9a2);
+    position: relative;
+    background: linear-gradient(90deg, #4c887c 0%, #65a98c 55%, #8fc8a9 100%);
     width: 0%;
     border-radius: inherit;
-    transition: width 0.4s ease;
-    box-shadow: 0 0 10px rgba(39, 174, 96, 0.35);
+    transition: width 0.45s cubic-bezier(.22,.8,.3,1);
+    box-shadow: 0 0 10px rgba(39, 126, 88, 0.2);
+  }
+  .psyche-progress-fill::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 1px;
+    width: 6px;
+    height: 6px;
+    border: 1px solid rgba(255, 255, 255, .9);
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 0 5px rgba(21, 78, 57, .25);
+    transform: translateY(-50%);
   }
 
   @keyframes psycheFadeIn {
@@ -160,8 +183,13 @@
   }
 
   .psyche-brand-mark { display: block; width: min(190px, 58%); max-height: 92px; object-fit: contain; margin: 6px auto 18px; }
+  .psyche-results-content .psyche-brand-mark { width: min(247px, 75.4%); max-height: 120px; }
   .psyche-welcome-content, .psyche-results-content { text-align: center; }
-  .psyche-welcome-content ul { max-width: 570px; margin: 16px auto; padding-left: 22px; text-align: left; }
+  .psyche-welcome-content ul { max-width: 570px; margin: 16px auto; padding: 0; text-align: left; list-style: none; }
+  .psyche-welcome-benefits { display: grid; gap: 10px; }
+  .psyche-welcome-benefits li { display: grid; grid-template-columns: 22px minmax(0, 1fr); align-items: start; gap: 11px; padding: 13px 15px; border: 1px solid rgba(49, 126, 91, .14); border-radius: 12px; background: rgba(240, 249, 244, .68); color: #425b52; font-size: 14px; line-height: 1.55; }
+  .psyche-welcome-benefits li > svg { width: 19px; height: 19px; margin-top: 2px; color: #4c887c; }
+  .psyche-welcome-benefits strong { color: #285d4b; }
   .psyche-results-content > p { text-align: justify; }
   .psyche-results-content h2 { text-align: center; }
   .psyche-results-content > h3 { text-align: center; }
@@ -179,6 +207,8 @@
   .psyche-result-card ul { margin: 8px 0 0; padding-left: 20px; color: #334155; }
   .psyche-result-card li { padding: 3px 0; line-height: 1.5; font-size: 14px; }
   .psyche-context-result { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+  .psyche-context-title { display: inline-flex; align-items: center; gap: 9px; }
+  .psyche-context-title svg { width: 18px; height: 18px; color: #4c887c; }
   .psyche-context-result strong { font-size: 14px; color: #425d54; font-weight: 650; }
   .psyche-context-result .psyche-context-status { margin-left: auto; }
   .psyche-context-result .psyche-context-status svg { width: 20px; height: 20px; }
@@ -200,13 +230,18 @@
   .psyche-card ul { margin: 15px 0; padding-left: 20px; }
   .psyche-step-title { display: flex; align-items: center; gap: 10px; color: var(--psyche-primary); }
   .psyche-step-title svg, .psyche-result-card h3 svg { width: 21px; height: 21px; flex: 0 0 auto; }
-  .psyche-result-section { padding: 10px 0; border-top: 1px solid rgba(39, 174, 96, 0.12); }
-  .psyche-result-section:first-of-type { border-top: 0; padding-top: 0; }
-  .psyche-result-section p { margin: 0; }
-  .psyche-result-section ul { margin: 5px 0 0; }
+  .psyche-result-section { padding: 12px 13px; border-top: 1px solid rgba(39, 174, 96, 0.12); border-radius: 10px; background: rgba(244, 250, 247, .62); }
+  .psyche-result-section:first-of-type { border-top: 0; }
+  .psyche-result-section-title { display: flex; align-items: center; gap: 8px; margin: 0 !important; color: #285d4b !important; font-size: 14px !important; }
+  .psyche-result-section-title svg { width: 16px; height: 16px; flex: 0 0 auto; color: #4c887c; }
+  .psyche-result-section ul { margin: 7px 0 0; }
+  .psyche-result-symptoms { padding-left: 35px !important; list-style: circle; }
+  .psyche-result-symptoms li { padding: 3px 0; color: #52665e; }
   .psyche-result-empty { color: #74847f !important; font-size: 13px !important; }
-  .psyche-disclaimer { margin: 18px 0 0; padding: 12px 15px; border-left: 3px solid #6caa8f; border-radius: 0 10px 10px 0; background: rgba(76, 136, 124, 0.08); color: #526b63 !important; font-size: 13px !important; text-align: justify !important; }
-  .psyche-next-title { margin: 22px 0 6px; color: var(--psyche-primary); font-size: 18px; text-align: left; }
+  .psyche-disclaimer { display: flex; align-items: flex-start; gap: 9px; margin: 18px 0 0; padding: 12px 15px; border-left: 3px solid #6caa8f; border-radius: 0 10px 10px 0; background: rgba(76, 136, 124, 0.08); color: #526b63 !important; font-size: 13px !important; text-align: justify !important; }
+  .psyche-disclaimer svg { width: 17px; height: 17px; flex: 0 0 auto; margin-top: 1px; color: #4c887c; }
+  .psyche-next-title { display: flex; align-items: center; justify-content: center; gap: 8px; margin: 22px 0 6px; color: var(--psyche-primary); font-size: 18px; text-align: center; }
+  .psyche-next-title svg { width: 20px; height: 20px; }
   .psyche-results-next { margin-top: 0; }
   .psyche-results-controls { margin-top: 18px; }
   .psyche-results-controls .psyche-nav-back { width: 40px; height: 40px; border: 1px solid rgba(13, 92, 63, 0.14); border-radius: 50%; background: rgba(255,255,255,.65); }
@@ -274,11 +309,15 @@
 
   .psyche-action-container { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 20px; }
   .psyche-action-btn {
+    width: 100%;
+    min-width: 0;
     display: inline-flex; align-items: center; justify-content: center; gap: 10px;
     text-decoration: none; padding: 14px 20px; border-radius: 10px; font-weight: 600; font-size: 15px; text-align: center;
     box-shadow: 0 4px 12px rgba(0,0,0,0.08); transition: opacity 0.2s;
   }
-  .psyche-action-btn-share { grid-column: 1 / -1; }
+  .psyche-whatsapp-btn { grid-column: 1; grid-row: 1; }
+  .psyche-calendar-btn { grid-column: 2; grid-row: 1; }
+  .psyche-action-btn-share { grid-column: 1 / -1; grid-row: 2; }
   .psyche-action-btn {
     min-height: 52px;
     border: 1px solid rgba(31, 117, 82, 0.24);
@@ -312,14 +351,27 @@
     box-sizing: border-box;
   }
   .psyche-crisis-card p { text-align: center; }
+  .psyche-crisis-card-reflection { padding-top: 18px; }
+  .psyche-crisis-return { position: sticky; top: 0; z-index: 2; display: inline-flex; align-items: center; gap: 7px; margin: 0 0 12px; padding: 8px 12px; border: 1px solid rgba(49, 126, 91, .2); border-radius: 999px; background: rgba(249, 253, 251, .94); color: #41685c; font: inherit; font-size: 13px; font-weight: 650; cursor: pointer; box-shadow: 0 3px 10px rgba(13, 92, 63, .07); }
+  .psyche-crisis-return:hover { background: rgba(232, 246, 238, .98); color: #285d4b; }
+  .psyche-crisis-return svg { width: 16px; height: 16px; }
+  .psyche-crisis-reflection-heading { display: flex; flex-direction: column; align-items: center; gap: 11px; margin: 4px auto 15px; text-align: center; }
+  .psyche-crisis-reflection-heading h2 { max-width: 480px; margin: 0; color: #235c49; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(23px, 4vw, 30px); line-height: 1.25; letter-spacing: -.02em; }
+  .psyche-crisis-icon { display: grid; place-items: center; width: 48px; height: 48px; border: 1px solid rgba(49, 126, 91, .18); border-radius: 16px; background: linear-gradient(145deg, rgba(234, 247, 239, .98), rgba(214, 238, 225, .85)); color: #4c887c; box-shadow: 0 8px 18px rgba(28, 91, 63, .08); }
+  .psyche-crisis-icon svg { width: 25px; height: 25px; }
+  .psyche-crisis-card .psyche-crisis-intro { margin: 0 0 18px; padding: 14px 17px; border: 1px solid rgba(49, 126, 91, .16); border-radius: 14px; background: rgba(236, 247, 241, .75); color: #315f4e; font-size: 15px; font-weight: 650; line-height: 1.6; }
+  .psyche-crisis-reflection-copy { display: grid; gap: 12px; }
+  .psyche-crisis-card .psyche-crisis-reflection-copy p { margin: 0; color: #485d54; font-size: 14px; line-height: 1.72; }
+  .psyche-crisis-reflection-copy strong { color: #285d4b; font-weight: 750; }
 
   @media (max-width: 480px) {
     .psyche-modal-content { padding: 16px 17px 22px; max-height: 95vh; max-height: 95dvh; border-radius: 17px; }
     .psyche-test-header { top: 0; grid-template-columns: 57px minmax(0, 1fr) 38px; gap: 10px; margin: -16px -17px 19px; padding: 12px 12px 11px; }
-    .psyche-modal-content.is-results .psyche-test-header { grid-template-columns: 54px minmax(0, 1fr) 38px; gap: 8px; }
+    .psyche-modal-content.is-results .psyche-test-header { grid-template-columns: 54px minmax(0, 1fr) 54px; gap: 8px; }
+    .psyche-modal-content.is-results .psyche-test-header { min-height: 100px; padding-top: 16px; padding-bottom: 16px; }
     .psyche-header-logo { width: 54px; max-height: 42px; }
     .psyche-modal-content.is-results .psyche-header-logo { width: 52px; }
-    .psyche-results-label-sub { padding: 4px 8px; font-size: 12px; }
+    .psyche-results-label-sub { padding: 6px 8px; font-size: 12px; }
     .psyche-close-btn { width: 38px; height: 38px; border-radius: 12px; }
     .psyche-options { flex-direction: row; gap: 10px; }
     .psyche-question-box { padding: 17px; }
@@ -329,10 +381,14 @@
   }
   @media (max-width: 360px) {
     .psyche-test-header { grid-template-columns: 45px minmax(0, 1fr) 36px; gap: 7px; }
-    .psyche-modal-content.is-results .psyche-test-header { grid-template-columns: 44px minmax(0, 1fr) 36px; gap: 6px; }
+    .psyche-modal-content.is-results .psyche-test-header { grid-template-columns: 44px minmax(0, 1fr) 44px; gap: 6px; }
     .psyche-header-logo { width: 44px; }
     .psyche-progress-meta { font-size: 10px; }
     .psyche-action-btn { font-size: 12px; }
+  }
+  @media (max-width: 360px) {
+    .psyche-action-container { grid-template-columns: minmax(0, 1fr); }
+    .psyche-whatsapp-btn, .psyche-calendar-btn, .psyche-action-btn-share { grid-column: 1; grid-row: auto; }
   }
   @media (prefers-reduced-motion: reduce) {
     .psyche-modal-content, .psyche-progress-fill, .psyche-question-box, .psyche-btn, .psyche-action-btn { animation: none; transition: none; }
