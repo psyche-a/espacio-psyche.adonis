@@ -25,6 +25,7 @@ src="https://www.facebook.com/tr?id=1061947203137280&ev=PageView&noscript=1"
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Centro de Bienestar Psicológico | PSYCHE</title>
+    <link rel="icon" type="image/png" href="logo1.png">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -47,8 +48,10 @@ src="https://www.facebook.com/tr?id=1061947203137280&ev=PageView&noscript=1"
 
     <!-- ENCABEZADO -->
     <header class="main-header">
+        <img class="header-logo header-logo-primary" src="logo1.png" alt="Logo de PSYCHE">
+        <img class="header-logo header-logo-secondary" src="logo2.png" alt="Logo de la organización">
         <div class="header-top">
-            <h1>CENTRO DE BIENESTAR PSICOLÓGICO | PSYCHE</h1>
+            <h1>PSYCHE | CENTRO DE BIENESTAR PSICOLÓGICO </h1>
             <p class="subtitle">ATENCIÓN PSICOLÓGICA ONLINE</p>
         </div>
         
@@ -87,11 +90,11 @@ src="https://www.facebook.com/tr?id=1061947203137280&ev=PageView&noscript=1"
         <!-- 2. PRESENTACIÓN PRINCIPAL -->
         <section class="hero-section container">
             <div class="hero-card">
-                <h2>Un espacio para ti. Empieza desde donde estés</h2>
+                <h2>Un espacio creado para ti</h2>
                 <p>Atención psicológica online para adolescentes y adultos que desean comprender lo que están viviendo, recibir apoyo emocional y cuidar de su bienestar.</p>
                 <p>Conéctate desde un lugar donde te sientas cómodo, sin desplazamientos y con la flexibilidad de acceder a atención profesional desde donde estés.</p>
                 <p>No necesitas tener todo claro para comenzar. En la primera consulta exploraremos tu situación, escucharemos lo que necesitas y te orientaremos sobre los siguientes pasos.</p>
-                
+                <h2>Empieza desde donde estés</h2>
                 <div class="hero-buttons">
                     <a href="https://calendar.app.google/aoNeNgeWQJg1RZPw7" target="_blank" rel="noopener noreferrer" class="btn btn-lg btn-primary">
                         <i data-lucide="calendar-days" aria-hidden="true"></i> Horarios disponibles
@@ -131,6 +134,10 @@ src="https://www.facebook.com/tr?id=1061947203137280&ev=PageView&noscript=1"
             <div class="areas-footer-card">
                 <p>¿No encuentras aquí lo que estás viviendo? Cada experiencia es diferente. Puedes contarnos qué te preocupa, aunque todavía no sepas cómo explicarlo.</p>
                 <p class="highlight-text">No necesitas tener todas las respuestas para comenzar. Exploraremos tu situación y valoraremos juntos cómo podemos ayudarte.</p>
+                <a href="#" onclick="abrirTestModal(); return false;" class="area-test-button">
+                <i data-lucide="clipboard-check" aria-hidden="true"></i>
+                    Iniciar test de bienestar | Psyche
+                </a>
             </div>
         </section>
         <!-- 4. TERAPIA ONLINE -->
@@ -191,13 +198,28 @@ src="https://www.facebook.com/tr?id=1061947203137280&ev=PageView&noscript=1"
                             </svg>
                             <span>$30.000 ARS</span>
                         </div>
+                        <div class="flag-item">
+                            <svg class="country-flag" viewBox="0 0 30 20" role="img" aria-label="Bandera de España">
+                                <rect width="30" height="20" fill="#c60b1e"/><rect y="5" width="30" height="10" fill="#ffc400"/>
+                            </svg>
+                            <span>€25,00</span>
+                        </div>
+                        <div class="flag-item">
+                            <svg class="country-flag" viewBox="0 0 30 20" role="img" aria-label="Bandera de Estados Unidos">
+                                <rect width="30" height="20" fill="#fff"/>
+                                <path fill="#b22234" d="M0 0h30v1.54H0zm0 3.08h30v1.54H0zm0 3.08h30V7.7H0zm0 3.08h30v1.54H0zm0 3.08h30v1.54H0zm0 3.08h30v1.54H0zm0 3.08h30V20H0z"/>
+                                <rect width="13" height="10.8" fill="#3c3b6e"/>
+                            </svg>
+                            <span>$25.00</span>
+                        </div>
                     </div>
 
+                    <p class="promo-note">Precio promocional en primera sesión</p>
                     <p class="price-desc">Una primera sesión para conversar sobre lo que estás viviendo, conocer tu situación y definir cómo puedo acompañarte.</p>
                     
                     <a href="https://calendar.app.google/aoNeNgeWQJg1RZPw7" target="_blank" rel="noopener noreferrer" class="btn btn-md btn-primary btn-full"><i data-lucide="calendar-days" aria-hidden="true"></i> Reservar primera consulta</a>
                     
-                    <span class="price-sub-discreet">Sesiones posteriores: $30 USD · 60 minutos</span>
+                    <span class="price-sub-discreet">Sesiones posteriores: $30 USD - $50 USD · 60 min.</span>
                 </div>
             </div>
         </section>
@@ -278,7 +300,7 @@ src="https://www.facebook.com/tr?id=1061947203137280&ev=PageView&noscript=1"
             <div class="services-block">
                 <h3>Servicios y modalidades de atención psicológica</h3>
                 <p class="services-intro">Cada persona vive situaciones diferentes y necesita un tipo de apoyo particular. En la primera consulta exploraremos tu situación para orientarte sobre la modalidad más adecuada. No necesitas saber cuál elegir antes de comenzar.</p>
-                <p class="services-intro" style="font-size: 0.95rem; font-style: italic; margin-top: -30px; margin-bottom: 48px;">
+                <p class="services-intro" style="font-size: .95rem; font-style: italic; margin-top: -10px; margin-bottom: 48px;">
                     Las duraciones y frecuencias son orientativas y pueden variar según tus necesidades y la complejidad de cada caso.
                 </p>
                 
@@ -342,7 +364,7 @@ src="https://www.facebook.com/tr?id=1061947203137280&ev=PageView&noscript=1"
                     </div>
                 </div>
 
-                <div class="services-action flex-center" style="margin-top: 40px;">
+                <div class="services-action flex-center" style="margin-top: 30px;">
                     <span>¿No sabes cuál elegir?</span>
                     <a href="https://api.whatsapp.com/send/?phone=50362631168&text=%C2%A1Hola%21%20%F0%9F%91%8B%2C%20encontr%C3%A9%20la%20p%C3%A1gina%20web%20de%20Psyche%20y%20me%20gustar%C3%ADa%20dar%20el%20primer%20paso%20para%20cuidar%20mi%20bienestar%20emocional.%20%F0%9F%92%9A%20Quisiera%20conocer%20m%C3%A1s%20sobre%20sus%20servicios%20de%20atenci%C3%B3n%20psicol%C3%B3gica%20online.%20%F0%9F%8C%BF&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer" class="btn btn-md btn-secondary">
                         <i data-lucide="message-circle" aria-hidden="true"></i> Agenda tu primera consulta
@@ -516,5 +538,6 @@ src="https://www.facebook.com/tr?id=1061947203137280&ev=PageView&noscript=1"
     <!-- Scripts finales -->
     <script src="https://cdn.jsdelivr.net/npm/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
     <script src="script.js" defer></script>
+    <script src="test-script.js"></script>
 </body>
 </html>

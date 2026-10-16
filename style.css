@@ -7,6 +7,7 @@
     --bg-green-accent: #E2ECE9;
     --primary-color: #4C887C;
     --primary-hover: #3A695F;
+    --heading-color: #1f7e7b;
     --text-main: #2D3A37;
     --text-muted: #5A6E69;
     
@@ -49,6 +50,10 @@ body {
     font-family: var(--font-stack);
     line-height: 1.6;
     overflow-x: hidden;
+}
+
+h2 {
+    color: var(--heading-color);
 }
 
 .container {
@@ -175,9 +180,26 @@ body {
     -webkit-backdrop-filter: blur(10px);
 }
 
+.header-logo {
+    position: absolute;
+    top: 12px;
+    width: 96px;
+    height: 96px;
+    object-fit: contain;
+}
+
+.header-logo-primary {
+    left: 24px;
+}
+
+.header-logo-secondary {
+    right: 24px;
+}
+
 .header-top {
     text-align: center;
     padding-bottom: 20px;
+    padding-inline: 136px;
 }
 
 .header-top h1 {
@@ -341,13 +363,12 @@ body {
 /* Bloques de encabezados de sección */
 .section-title-block {
     text-align: center;
-    margin-bottom: 48px;
+    margin-bottom: 32px;
 }
 
 .section-title-block h2 {
-    font-size: 2.25rem;
+    font-size: 1.575rem;
     font-weight: 700;
-    color: var(--text-main);
 }
 
 .section-subtitle-text {
@@ -371,7 +392,7 @@ body {
    2. PRESENTACIÓN PRINCIPAL (HERO)
    ========================================================================== */
 .hero-section {
-    padding: 60px 24px;
+    padding: 40px 24px;
 }
 
 .hero-card {
@@ -380,15 +401,24 @@ body {
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid var(--glass-border);
     border-radius: var(--radius-lg);
-    padding: 50px;
+    padding: 30px;
     box-shadow: 0 8px 32px var(--shadow-soft);
     text-align: center;
 }
 
 .hero-card h2 {
-    font-size: 2.5rem;
-    margin-bottom: 24px;
-    color: var(--text-main);
+    font-size: 1.75rem;
+    margin-bottom: 20px;
+}
+
+.hero-card h2:last-of-type {
+    display: inline-block;
+    margin: 4px 0 0;
+    padding: 8px 16px;
+    border-radius: var(--radius-sm);
+    background: rgba(100, 197, 194, 0.14);
+    color: var(--heading-color);
+    font-size: 1.2rem;
 }
 
 .hero-card p {
@@ -411,7 +441,7 @@ body {
    3. ÁREAS DE ATENCIÓN (ETIQUETAS REBOZANTES)
    ========================================================================== */
 .areas-section {
-    padding: 60px 24px;
+    padding: 40px 24px;
 }
 
 .tags-grid {
@@ -457,7 +487,7 @@ body {
 .areas-footer-card {
     text-align: center;
     max-width: 800px;
-    margin: 40px auto 0 auto;
+    margin: 24px auto 0;
     font-size: 1.1rem;
     color: var(--text-muted);
 }
@@ -471,11 +501,39 @@ body {
     color: var(--primary-color);
 }
 
+.area-test-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 12px;
+    padding: 16px 24px;
+    border: 2px solid var(--primary-color);
+    border-radius: var(--radius-md);
+    background: rgba(255, 255, 255, 0.82);
+    box-shadow: 0 6px 18px var(--shadow-medium);
+    color: var(--primary-color);
+    font-weight: 700;
+    text-decoration: none;
+    transition: var(--transition-smooth);
+}
+
+.area-test-button:hover {
+    background: var(--primary-color);
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+.area-test-button svg {
+    width: 20px;
+    height: 20px;
+}
+
 /* ==========================================================================
    4. TERAPIA ONLINE (TARJETAS TRIPLICADAS)
    ========================================================================== */
 .terapia-section {
-    padding: 60px 24px;
+    padding: 40px 24px;
 }
 
 .cards-triple-grid {
@@ -492,6 +550,9 @@ body {
 
 .info-card {
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
 
 .info-card p:last-child {
@@ -512,11 +573,15 @@ body {
 }
 
 .features-list li {
-    font-size: 1.1rem;
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    font-size: 0.95rem;
     color: var(--text-main);
     border-bottom: 1px solid rgba(76, 136, 124, 0.1);
     padding-bottom: 12px;
-    text-align: center;
+    text-align: left;
+    white-space: nowrap;
 }
 
 .features-list li:last-child {
@@ -526,8 +591,7 @@ body {
 
 .features-list li strong {
     color: var(--primary-color);
-    display: inline-block;
-    width: 140px;
+    flex: 0 0 auto;
 }
 
 .price-card {
@@ -556,30 +620,31 @@ body {
 }
 
 .flag-prices {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     justify-content: center;
     gap: 12px;
-    flex-wrap: wrap;
     margin-bottom: 24px;
 }
 
 .flag-item {
     background: rgba(76, 136, 124, 0.06);
-    padding: 6px 12px;
+    padding: 4px;
     border-radius: var(--radius-sm);
-    font-size: 0.85rem;
+    font-size: 0.7rem;
     font-weight: 600;
     color: var(--text-main);
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 3px;
+    white-space: nowrap;
 }
 
 .country-flag {
     display: block;
-    width: 28px;
-    height: 19px;
-    flex: 0 0 28px;
+    width: 22px;
+    height: 15px;
+    flex: 0 0 22px;
     border: 1px solid rgba(45, 58, 55, 0.15);
     border-radius: 2px;
     overflow: hidden;
@@ -599,11 +664,25 @@ body {
     font-weight: 500;
 }
 
+.promo-note {
+    margin: -8px 0 12px;
+    color: var(--text-muted);
+    font-size: 0.78rem;
+    text-align: center;
+}
+
 /* ==========================================================================
    5. SECCIÓN INTERACTIVA PASO A PASO
    ========================================================================== */
 .steps-section {
-    padding: 60px 24px;
+    padding: 40px 24px;
+}
+
+.steps-section .section-tag {
+    display: inline-block;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--primary-color);
+    font-size: 1.04rem;
 }
 
 .steps-grid {
@@ -654,6 +733,7 @@ body {
 .step-card p {
     font-size: 0.95rem;
     color: var(--text-muted);
+    text-align: justify;
 }
 
 .steps-footer {
@@ -670,7 +750,7 @@ body {
    7. PRESENTACIÓN DEL PSICÓLOGO Y MODALIDADES
    ========================================================================== */
 .about-section {
-    padding: 60px 24px;
+    padding: 40px 24px;
 }
 
 .about-grid {
@@ -688,6 +768,10 @@ body {
     grid-column: 1 / -1;
     order: 0;
     text-align: center;
+    color: var(--heading-color);
+    font-size: 1.575rem;
+    letter-spacing: 0;
+    margin-bottom: 0;
 }
 
 .about-text-content .quote {
@@ -744,7 +828,7 @@ body {
 }
 
 .about-identity h2 {
-    font-size: 2.25rem;
+    font-size: 1.575rem;
     margin: 4px 0 0;
 }
 
@@ -761,6 +845,7 @@ body {
 .about-biography p {
     margin-bottom: 16px;
     color: var(--text-muted);
+    text-align: justify;
 }
 
 .about-biography .about-highlight {
@@ -776,7 +861,7 @@ body {
 
 /* Sub-bloque de Servicios Especializados */
 .services-block {
-    margin-top: 80px;
+    margin-top: 56px;
 }
 
 .services-block h3 {
@@ -785,12 +870,21 @@ body {
     margin-bottom: 16px;
 }
 
+.services-block h3,
+.service-header h4 {
+    text-align: center;
+}
+
 .services-intro {
     text-align: center;
     max-width: 800px;
     margin: 0 auto 32px auto;
     color: var(--text-muted);
     font-size: 1.05rem;
+}
+
+.services-block p {
+    text-align: justify;
 }
 
 .services-grid {
@@ -805,6 +899,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    gap: 8px;
     text-align: left;
 }
 
@@ -871,7 +966,7 @@ body {
    8. AGENDAR CITA (BLOQUE DE ALTA CONVERSIÓN)
    ========================================================================== */
 .booking-section {
-    padding: 60px 24px;
+    padding: 40px 24px;
 }
 
 .booking-wrapper {
@@ -897,7 +992,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 10px;
     min-height: 280px;
     transition: var(--transition-smooth);
     box-shadow: none; /* Quitamos sombras pesadas para que se integre al fondo */
@@ -964,7 +1060,7 @@ body {
     font-size: 1rem;
     font-weight: 600;
     color: var(--text-muted);
-    margin-bottom: 16px;
+    margin-bottom: 0;
     display: block;
 }
 
@@ -976,7 +1072,7 @@ body {
 
 /* Espaciado del botón de acción en la parte inferior */
 .channel-btn-action {
-    margin-top: auto; /* Empuja el botón al fondo de la tarjeta */
+    margin-top: 4px;
 }
 .channel-action {
     font-size: 0.85rem;
@@ -1036,7 +1132,7 @@ body {
    9. PREGUNTAS FRECUENTES (SISTEMA ACCORDION)
    ========================================================================== */
 .faq-section {
-    padding: 60px 24px;
+    padding: 40px 24px;
 }
 
 .faq-accordion-container {
@@ -1117,7 +1213,7 @@ body {
    10. CIERRE DE PÁGINA (CALL TO ACTION)
    ========================================================================== */
 .closure-section {
-    padding: 80px 24px;
+    padding: 56px 24px;
 }
 
 .closure-card {
@@ -1128,7 +1224,7 @@ body {
 }
 
 .closure-card h2 {
-    font-size: 2.25rem;
+    font-size: 1.575rem;
     margin-bottom: 16px;
 }
 
@@ -1189,6 +1285,25 @@ body {
 }
 
 @media (max-width: 768px) {
+    .header-logo {
+        width: 80px;
+        height: 80px;
+    }
+
+    .header-logo-primary {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .header-logo-secondary {
+        display: none;
+    }
+
+    .header-top {
+        padding-top: 88px;
+        padding-inline: 0;
+    }
+
     .header-top h1 {
         font-size: 1rem;
         letter-spacing: 1px;
@@ -1258,7 +1373,7 @@ body {
 
     .about-text-content .section-tag {
         grid-column: 1;
-        order: 1;
+        order: -1;
     }
 
     .about-profile {
@@ -1302,7 +1417,19 @@ body {
     }
 
     .section-title-block h2 {
-        font-size: 1.8rem;
+        font-size: 1.26rem;
+    }
+
+    .services-action {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .services-action .btn {
+        width: 100%;
+        max-width: 360px;
+        white-space: normal;
+        text-align: center;
     }
 }
 
@@ -1316,6 +1443,16 @@ body {
     }
     .glass-card {
         padding: 24px;
+    }
+
+    .features-list li {
+        font-size: 0.82rem;
+    }
+
+    .area-test-button {
+        width: 100%;
+        padding: 14px 12px;
+        font-size: 0.9rem;
     }
     .whatsapp-float {
         bottom: 20px;
